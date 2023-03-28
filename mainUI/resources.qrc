@@ -1,9 +1,0 @@
-<RCC>
-  <qresource prefix="icons">
-    <file>search.svg</file>
-    <file>folder.svg</file>
-    <file>settings.svg</file>
-    <file>phone.svg</file>
-    <file>albums.svg</file>
-  </qresource>
-</RCC>
