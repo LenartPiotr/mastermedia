@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="720.0" prefWidth="215.0" style="-fx-background-color: #29292a;"
+      fx:controller="mastermedia.frontend.controllers.extra.MenuController" xmlns:fx="http://javafx.com/fxml">
+        <children>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+                <children>
+                    <Label id="main-label" layoutX="49.0" layoutY="85.0" text="MediaMaster" textFill="WHITE" />
+                </children>
+            </Pane>
+            <Button fx:id="home" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="215.0" text="Home" textFill="WHITE">
+                <graphic>
+                    <!--                        <FontAwesomeIconView fill="WHITE" glyphName="HOME_PAGE_VIEW" size="25.0" />-->
+                </graphic>
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
+            <Button fx:id="search" mnemonicParsing="false" prefHeight="50.0" prefWidth="215.0" text="Search" textFill="#707070">
+                <graphic>
+                    <!--                        <FontAwesomeIconView fill="#707070" glyphName="BROWSE_FILES_VIEW" size="25" />-->
+                </graphic>
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
+            <Button fx:id="folder" mnemonicParsing="false" prefHeight="50.0" prefWidth="215.0" text="Albums" textFill="#707070">
+                <graphic>
+                    <!--                        <FontAwesomeIconView fill="#707070" glyphName="FOLDER" size="25" />-->
+                </graphic>
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
+            <Button fx:id ="settings" mnemonicParsing="false" prefHeight="50.0" prefWidth="215.0" text="Settings" textFill="#707070">
+                <graphic>
+                    <!--                        <FontAwesomeIconView fill="#707070" glyphName="GEAR" size="25.0" />-->
+                </graphic>
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
+        </children>
+</VBox>
+

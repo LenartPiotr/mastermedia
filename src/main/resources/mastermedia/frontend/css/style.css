@@ -1,0 +1,25 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./Montserrat.ttf');
+}
+
+#main-label{
+    -fx-font-family: 'Montserrat', sans-serif;
+    -fx-font-size: 20px;
+
+}
+
+Button{
+
+    -fx-background-color: #29292a;
+}
+
+Button:hover{
+
+    -fx-background-color: #282829;
+
+}
+
+#active{
+    -fx-font-family: 'Montserrat', sans-serif;
+}

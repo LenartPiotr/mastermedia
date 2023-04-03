@@ -1,5 +1,5 @@
-public class FileSquisher {
-
-    public FileSquisher()
-
-}
+//public class FileSquisher {
+//
+//    public FileSquisher()
+//
+//}
