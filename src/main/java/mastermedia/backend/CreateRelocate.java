@@ -8,13 +8,22 @@ import java.util.Map;
 
 public class CreateRelocate {
 
+    private String inputPath;
+    private String outputPath;
     private static Map<Integer, String> month_map = Map
         .ofEntries(Map.entry(1, "Styczeń"), Map.entry(2, "Luty"), Map.entry(3, "Marzec"), Map.entry(4, "Kwiecień"),
                    Map.entry(5, "Maj"), Map.entry(6, "Czerwiec"), Map.entry(7, "Lipiec"), Map.entry(8, "Sierpień"),
                    Map.entry(9, "Wrzesień"), Map.entry(10, "Październik"), Map.entry(11, "Listopad"),
                    Map.entry(12, "Grudzień"));
 
-    public void relocateFiles(String inputPath, String outputPath) {
+    public CreateRelocate(String inputPath, String outputPath) {
+
+        this.inputPath = inputPath;
+        this.outputPath = outputPath;
+
+    }
+
+    public void relocateFiles() {
 
         File inputDirectory = new File(inputPath);
 
@@ -57,8 +66,6 @@ public class CreateRelocate {
                 if(!outputDirectory.exists()) { outputDirectory.mkdirs(); }
 
                 Files.move(file.toPath(), outputDirectory.toPath().resolve(file.getName()));
-
-                i++;
 
             }catch(Exception e) {
 
