@@ -4,11 +4,37 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.Label?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0"
-            prefWidth="1280.0" style="-fx-background-color: #3d3d3e;" stylesheets="@css/style.css"
+            prefWidth="1280.0" style="-fx-background-color: #3d3d3e;"
             xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+
             fx:controller="mastermedia.frontend.controllers.HomePageController">
 
     <fx:include source="extra/menu_view.fxml"/>
+    <Label id="phones-label" layoutX="276.0" layoutY="57.0" prefHeight="66.0" prefWidth="161.0" text="Phones" textFill="WHITE">
+        <font>
+            <Font size="48.0" />
+        </font>
+    </Label>
+    <Label id="description" layoutX="276.0" layoutY="127.0" text="Connect your phone to your computer" textFill="WHITE" />
+    <Line endX="820.0" layoutX="377.0" layoutY="172.0" startX="-100.0" stroke="WHITE" />
+    <AnchorPane id="phone-container" layoutX="277.0" layoutY="227.0" prefHeight="420.0" prefWidth="920.0">
+        <children>
+            <Pane layoutX="65.0" layoutY="73.0" prefHeight="275.0" prefWidth="230.0" styleClass="single-task">
+                <children>
+<!--                    <FontAwesomeIconView fill="WHITE" glyphName="MOBILE" layoutX="71.0" layoutY="185.0" size="200" wrappingWidth="87.0" />-->
+                    <Label layoutX="84.0" layoutY="204.0" styleClass="phone-description" text="iPhone 13" textFill="WHITE" />
+                    <Button layoutX="71.0" layoutY="231.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="87.0" styleClass="phone-button" text="Connect" textFill="WHITE" />
+                </children>
+            </Pane>
+        </children>
+    </AnchorPane>
+    <Button id="reload-button" layoutX="1124.0" layoutY="185.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="74.0" text="Reload" textFill="#269be5" />
 
 </AnchorPane>

@@ -2,6 +2,7 @@ package mastermedia.frontend.controllers.extra;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
@@ -19,8 +20,11 @@ public class MenuController {
 
     String a = String.valueOf(XMLFile.HOME_PAGE_VIEW);
 
+
     @FXML
     public void initialize() {
+
+
         home.setOnAction(event -> {
             try {
                 new SceneController().switchToScene(event, String.valueOf(XMLFile.HOME_PAGE_VIEW));

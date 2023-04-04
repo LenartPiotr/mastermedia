@@ -1,25 +1,58 @@
-@font-face {
-    font-family: 'Montserrat';
-    src: url('./Montserrat.ttf');
-}
 
-#main-label{
-    -fx-font-family: 'Montserrat', sans-serif;
-    -fx-font-size: 20px;
+#menu-label{
+    -fx-font-size: 28px;
 
 }
 
-Button{
-
+.menu-button{
     -fx-background-color: #29292a;
+    -fx-font-size: 20px;
 }
 
-Button:hover{
-
+.menu-button:hover{
     -fx-background-color: #282829;
 
 }
 
 #active{
-    -fx-font-family: 'Montserrat', sans-serif;
+    -fx-color: #ffffff;
 }
+
+#phones-label{
+    -fx-font-size: 48px;
+
+}
+
+#description{
+    -fx-font-size: 22px;
+
+}
+
+#reload-button{
+    -fx-font-size: 16px;
+    -fx-background-color: #3e3e3f;
+    -fx-font-weight: bold;
+}
+
+#phone-container{
+    -fx-background-color:  #29292a;
+    -fx-background-radius: 20px;
+}
+
+.single-task{
+    -fx-background-color:  #38383a;
+    -fx-background-radius: 20px;
+}
+
+.phone-description{
+    -fx-font-size: 14px;
+}
+
+.phone-button{
+    -fx-font-size: 14px;
+    -fx-background-color: #25abff;
+    -fx-background-radius: 20px;
+    -fx-font-weight: bold;
+}
+
+
