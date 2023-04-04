@@ -1,18 +1,8 @@
-<<<<<<< HEAD
-//public class FileSquisher {
-//
-//    public FileSquisher()
-//
-//}
-=======
 package mastermedia.backend;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import java.awt.Graphics2D;
 
 public class FileSquisher {
 
@@ -79,4 +69,3 @@ public class FileSquisher {
     }
 
 }
->>>>>>> b64907c (cleanup)
