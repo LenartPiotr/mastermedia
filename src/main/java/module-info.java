@@ -2,7 +2,7 @@ module frontend {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.graphics;
-//    requires de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+    requires transitive java.desktop;
 
     opens mastermedia.frontend to javafx.fxml;
     exports mastermedia.frontend;
