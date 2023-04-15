@@ -1,8 +1,8 @@
-module frontend {
+module mastermedia {
     requires javafx.controls;
     requires javafx.fxml;
-    requires javafx.graphics;
-    requires transitive java.desktop;
+    requires transitive javafx.graphics;
+    requires org.yaml.snakeyaml;
 
     opens mastermedia.frontend to javafx.fxml;
     exports mastermedia.frontend;
@@ -11,5 +11,5 @@ module frontend {
     exports mastermedia.frontend.controllers.extra;
     opens mastermedia.frontend.controllers.extra to javafx.fxml;
 
-
 }
+
