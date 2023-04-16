@@ -1,8 +1,8 @@
-package mastermedia.frontend.controllers.extra;
+package mastermedia.frontend.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
+import mastermedia.frontend.SceneController;
 
 import java.io.IOException;
 
@@ -18,7 +18,7 @@ public class MenuController {
     @FXML
     Button settings;
 
-    String a = String.valueOf(XMLFile.HOME_PAGE_VIEW);
+
 
 
     @FXML

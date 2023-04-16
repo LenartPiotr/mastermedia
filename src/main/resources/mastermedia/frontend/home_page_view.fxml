@@ -16,7 +16,7 @@
 
             fx:controller="mastermedia.frontend.controllers.HomePageController">
 
-    <fx:include source="extra/menu_view.fxml"/>
+    <fx:include source="menu_view.fxml"/>
     <Label id="phones-label" layoutX="276.0" layoutY="57.0" prefHeight="66.0" prefWidth="161.0" text="Phones" textFill="WHITE">
         <font>
             <Font size="48.0" />

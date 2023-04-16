@@ -9,8 +9,6 @@ module mastermedia {
     exports mastermedia.frontend;
     exports mastermedia.frontend.controllers;
     opens mastermedia.frontend.controllers to javafx.fxml;
-    exports mastermedia.frontend.controllers.extra;
-    opens mastermedia.frontend.controllers.extra to javafx.fxml;
 
     opens mastermedia.backend.settings to org.yaml.snakeyaml;
     exports mastermedia.backend;
