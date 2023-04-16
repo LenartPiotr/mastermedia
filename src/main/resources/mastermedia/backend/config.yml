@@ -1,0 +1,17 @@
+directories:
+  original: original/
+  lowResolution: low-resolution/
+  sorted: sorted/
+filetypes:
+  video: [mp4, mkv, avi]
+  image: [png, jpg, jpeg]
+thumbnails: # compressed images
+  maxWidth: 1024
+  maxHeight: 1024
+  quality: 5
+toenails: # compressed videos
+  maxWidth: 640
+  maxHeight: 480
+  bitrate: 450
+  fps: original
+

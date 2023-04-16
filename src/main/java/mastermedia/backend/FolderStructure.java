@@ -2,20 +2,26 @@ package mastermedia.backend;
 
 import java.io.File;
 
+import mastermedia.backend.settings.Directories;
+
 public class FolderStructure {
 
     public static final String PUBLIC = "./Public";
-    public static final String SOURCE = "./Public/Source";
-    public static final String MINI = "./Public/Mini";
-    public static final String SORTED = "./Public/Sorted";
+    private Directories directories;
 
-    public static void createFolderStructure() {
+    public void createFolderStructure(Directories dirs) {
+
+        this.directories = dirs;
 
         new File(PUBLIC).mkdirs();
-        new File(SOURCE).mkdirs();
-        new File(MINI).mkdirs();
-        new File(SORTED).mkdirs();
+        new File(PUBLIC + "/" + dirs.getOriginal()).mkdirs();
+        new File(PUBLIC + "/" + dirs.getLowResolution()).mkdirs();
+        new File(PUBLIC + "/" + dirs.getSorted()).mkdirs();
 
     }
+
+    public Directories getDirectories() { return directories; }
+
+    public void setDirectories(Directories directories) { this.directories = directories; }
 
 }

@@ -2,7 +2,6 @@ package mastermedia.frontend;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import mastermedia.backend.FFMPEGProvider;
 import mastermedia.backend.FolderStructure;
 
 public class HelloController {
@@ -21,6 +20,5 @@ public class HelloController {
 
     @FXML
     protected void testFFMPEG() {
-        FFMPEGProvider.prepareFFMPEG();
     }
 }
