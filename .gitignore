@@ -1,6 +1,11 @@
 # Own files
 
 Public/
+/config.yml
+.classpath
+.factorypath
+.project
+.settings
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -157,7 +162,3 @@ dmypy.json
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
-.classpath
-.factorypath
-.project
-.settings
