@@ -1,0 +1,53 @@
+.label{
+    -fx-text-fill:  #ffffff;
+}
+#nameSection{
+    -fx-font-size: 20px;
+}
+#mainPane{
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+#scrollPane{
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+
+}
+.scroll-pane .scroll-bar:horizontal,.scroll-pane .scroll-bar:vertical {
+    -fx-opacity: 0;
+    -fx-visibility: hidden;
+}
+
+
+#acceptDivision,#newDivisionAlbums{
+    -fx-background-color:  #38383a;
+    -fx-background-radius: 20px;
+
+}
+
+.button{
+    -fx-text-fill:  #ffffff;
+    -fx-background-radius: 15px;
+}
+
+#newDivisionButton{
+
+    -fx-background-color: #25abff;
+
+}
+
+#acceptButton{
+    -fx-background-color: #00B90C;
+}
+
+#cancelButton{
+    -fx-background-color: #C90000;
+}
+
+#albumPane{
+    -fx-background-radius: 50%;
+    -fx-border-radius: 50%;
+}

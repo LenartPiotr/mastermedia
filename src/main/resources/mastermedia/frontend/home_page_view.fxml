@@ -7,9 +7,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #3d3d3e;" stylesheets="@controllers/css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mastermedia.frontend.controllers.HomePageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #3d3d3e;" stylesheets="@controllers/css/home_page.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mastermedia.frontend.controllers.HomePageController">
 
-    <fx:include source="menu_view.fxml" />
+    <fx:include source="extra_fxml_file/menu_view.fxml" />
     <Label id="phones-label" layoutX="276.0" layoutY="57.0" prefHeight="66.0" prefWidth="161.0" text="Phones" textFill="WHITE">
         <font>
             <Font size="48.0" />
@@ -18,7 +18,7 @@
     <Label id="description" layoutX="276.0" layoutY="127.0" text="Connect your phone to your computer" textFill="WHITE" />
     <Line endX="820.0" layoutX="377.0" layoutY="172.0" startX="-100.0" stroke="WHITE" />
     <AnchorPane id="phone-container" layoutX="277.0" layoutY="227.0" prefHeight="420.0" prefWidth="920.0">
-        <fx:include source="phone_container.fxml"/>
+        <fx:include source="extra_fxml_file/phone_container.fxml"/>
 
     </AnchorPane>
     <Button id="reload-button" fx:id="reloadButton" layoutX="1124.0" layoutY="185.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="74.0" text="Reload" textFill="#269be5" />
