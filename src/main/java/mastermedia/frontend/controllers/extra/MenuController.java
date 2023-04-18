@@ -1,9 +1,9 @@
-package mastermedia.frontend.controllers;
+package mastermedia.frontend.controllers.extra;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import mastermedia.frontend.SceneController;
-import javafx.scene.shape.SVGPath;
+
 
 import java.io.IOException;
 
@@ -24,8 +24,7 @@ public class MenuController {
 
     @FXML
     public void initialize() {
-        SVGPath svgPath = new SVGPath();
-        svgPath.setContent("M150 0 L75 200 L225 200 Z");
+
 
 
         home.setOnAction(event -> {

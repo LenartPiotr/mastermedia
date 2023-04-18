@@ -1,4 +1,4 @@
-package mastermedia.frontend.controllers;
+package mastermedia.frontend.controllers.extra;
 
 public enum XMLFile {
     HOME_PAGE_VIEW,

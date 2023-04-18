@@ -13,6 +13,8 @@ module mastermedia {
     opens mastermedia.backend.settings to org.yaml.snakeyaml;
     exports mastermedia.backend;
     exports mastermedia.backend.settings;
+    exports mastermedia.frontend.controllers.extra;
+    opens mastermedia.frontend.controllers.extra to javafx.fxml;
 
 }
 
