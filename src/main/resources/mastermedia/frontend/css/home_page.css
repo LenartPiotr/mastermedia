@@ -1,19 +1,4 @@
 
-#menu-label{
-    -fx-font-size: 28px;
-
-}
-
-.menu-button{
-    -fx-background-color: #29292a;
-    -fx-font-size: 20px;
-}
-
-.menu-button:hover{
-    -fx-background-color: #282829;
-
-}
-
 #active{
     -fx-color: #ffffff;
 }

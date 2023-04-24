@@ -1,4 +1,4 @@
-package mastermedia.frontend.controllers.extra;
+package mastermedia.frontend;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -20,10 +20,8 @@ public class SceneController {
 
     public void switchToScene(ActionEvent event, String nameFileXML) throws IOException {
 
-        System.out.println(nameFileXML.toLowerCase() + ".fxml");
-        System.out.println(getClass().getResource(
-                nameFileXML.toLowerCase() + ".fxml"));
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("mastermedia/frontend"+
+
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(
                 nameFileXML.toLowerCase() + ".fxml")));
 
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

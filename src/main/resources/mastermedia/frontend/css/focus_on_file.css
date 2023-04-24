@@ -1,0 +1,7 @@
+#foggyPane{
+    -fx-background-color: black;
+    -fx-opacity: 70%;
+}
+#big_img{
+    -fx-opacity: 100%;
+}

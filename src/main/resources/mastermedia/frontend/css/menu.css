@@ -1,0 +1,22 @@
+
+.menu-label{
+    -fx-font-family: "Montserrat";
+    -fx-font-size: 28px;
+
+}
+
+.menu-button{
+    -fx-font-family: "Montserrat";
+    -fx-background-color: transparent;
+    -fx-font-size: 20px;
+}
+
+.menu-button:hover{
+    -fx-background-color: #29292A;
+
+}
+
+.menu-button > .imageView{
+    -fx-pref-width: 36px;
+    -fx-pref-height: 35px;
+}

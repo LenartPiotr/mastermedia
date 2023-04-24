@@ -1,6 +1,7 @@
 package mastermedia.frontend.controllers;
 
-import mastermedia.frontend.controllers.extra.MenuController;
+import javafx.scene.image.ImageView;
 
-public class BrowseFilesAlbumController extends MenuController {
+public class BrowseFilesAlbumController  {
+    public ImageView lineBetweenAlbums;
 }

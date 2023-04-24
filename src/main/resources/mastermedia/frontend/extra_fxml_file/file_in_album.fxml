@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mastermedia.frontend.controllers.extra.FileInAlbum">
+
+    <Pane fx:id="sectionPane" layoutX="-6.0" prefHeight="200.0" prefWidth="777.0" stylesheets="@../css/file_in_album.css">
+        <children>
+            <Label fx:id="nameSection" layoutX="23.0" layoutY="29.0" prefHeight="19.0" prefWidth="137.0" stylesheets="@../css/browse_files_album.css" text="Lato 2023" />
+            <ImageView id="albumPane" fx:id="albumPane" fitHeight="127.0" fitWidth="183.0" layoutX="14.0" layoutY="59.0" pickOnBounds="true" style="-fx-background-radius: 20;">
+                <image>
+                    <Image url="@../img/img.jpg" />
+                </image>
+            </ImageView>
+        </children>
+    </Pane>
+
+</AnchorPane>
