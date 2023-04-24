@@ -1,5 +1,8 @@
 package mastermedia.frontend.controllers.extra;
 
+import java.io.IOException;
+import java.util.Objects;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -7,9 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.util.Objects;
 
 public class SceneController {
 
