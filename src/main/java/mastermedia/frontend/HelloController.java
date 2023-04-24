@@ -2,7 +2,6 @@ package mastermedia.frontend;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import mastermedia.backend.FolderStructure;
 
 public class HelloController {
     @FXML
@@ -15,7 +14,7 @@ public class HelloController {
 
     @FXML
     protected void createDirs() {
-        FolderStructure.createFolderStructure();
+        // FolderStructure.createFolderStructure();
     }
 
     @FXML

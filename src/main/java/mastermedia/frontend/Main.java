@@ -1,15 +1,16 @@
 package mastermedia.frontend;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mastermedia.backend.FileManager;
 import mastermedia.backend.FolderStructure;
+import mastermedia.backend.ffmpeg.WindowsFFMPEGDownloader;
 import mastermedia.backend.settings.Settings;
 import mastermedia.frontend.controllers.HomePageController;
-
-import java.io.IOException;
 
 public class Main extends Application {
 
@@ -34,6 +35,7 @@ public class Main extends Application {
         Settings s = fm.getSettings();
         FolderStructure fs = new FolderStructure();
         fs.createFolderStructure(s.getDirectories());
+        new WindowsFFMPEGDownloader().download(fs.getOriginal());
         launch();
 
     }
