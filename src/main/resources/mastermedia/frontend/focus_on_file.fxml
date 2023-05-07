@@ -13,7 +13,7 @@
         <content>
             <Pane fx:id="mainPane" centerShape="false" prefHeight="727.0" prefWidth="765.0" scaleShape="false" styleClass="scroll-pane" stylesheets="@css/browse_files_album.css">
                 <children>
-                    <fx:include source="extra_fxml_file/file_in_album.fxml" />
+                    <fx:include source="file_container.fxml" />
 
                     <Pane layoutY="209.0" prefHeight="13.0" prefWidth="751.0" stylesheets="@css/browse_files_album.css">
                         <children>

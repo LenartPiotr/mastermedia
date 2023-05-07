@@ -15,10 +15,13 @@
     </properties>
 
     <dependencies>
+
+
+
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>19.0.2.1</version>
+            <version>21-ea+5</version>
         </dependency>
         <dependency>
             <groupId>org.yaml</groupId>
@@ -28,12 +31,12 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>19.0.2.1</version>
+            <version>21-ea+5</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-graphics</artifactId>
-            <version>19.0.2.1</version>
+            <version>21-ea+5</version>
         </dependency>
         <!-- Thanks for using https://jar-download.com -->
 
@@ -62,9 +65,8 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.26</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
-
 
         <!-- https://mvnrepository.com/artifact/de.jensd/fontawesomefx -->
         <dependency>
@@ -79,6 +81,11 @@
             <artifactId>jfoenix</artifactId>
             <version>9.0.10</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>de.plushnikov.lombok-intellij-plugin</groupId>-->
+<!--            <artifactId>lombok-plugin</artifactId>-->
+<!--            <version>0.5</version>-->
+<!--        </dependency>-->
 
 
     </dependencies>
@@ -102,6 +109,13 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
+                            <annotationProcessorPaths>
+                                <path>
+                                    <groupId>org.projectlombok</groupId>
+                                    <artifactId>lombok</artifactId>
+                                    <version>1.18.26</version>
+                                </path>
+                            </annotationProcessorPaths>
                             <mainClass>mastermedia.frontend.Main</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
