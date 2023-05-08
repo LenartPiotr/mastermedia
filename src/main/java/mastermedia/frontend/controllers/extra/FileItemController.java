@@ -33,6 +33,7 @@ public class FileItemController implements Initializable {
     }
 
     public void showImageInAlbum(Directory directory, int i){
+        title.setVisible(false);
         albumPane.setImage(new Image(changePath(directory.fileList.get(i).getPath())));
     }
 

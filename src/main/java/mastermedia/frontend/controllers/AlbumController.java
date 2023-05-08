@@ -19,6 +19,8 @@ public class AlbumController {
     @FXML
     private ScrollPane scrollPane;
 
+
+
     public Scene createScene() throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("album_controller.fxml"));
@@ -38,7 +40,7 @@ public class AlbumController {
             }
         });
 
-        vbox.getChildren().add(FileStructure.addGridPaneDirectory(3,Main.directoryList,200,400));
+        vbox.getChildren().add(FileStructure.addGridPaneDirectory(3,Main.directoryList,200,250));
 
     }
 
