@@ -2,9 +2,14 @@ package mastermedia.backend.settings;
 
 public class Directories {
 
+    private String binaries;
     private String original;
     private String lowResolution;
     private String sorted;
+
+    public String getBinaries() { return binaries; }
+
+    public void setBinaries(String binaries) { this.binaries = binaries; }
 
     public String getOriginal() { return original; }
 
@@ -21,8 +26,7 @@ public class Directories {
     @Override
     public String toString() {
 
-        return "Directories [original=" + original + ", lowResolution=" + lowResolution + ", sorted=" + sorted +
-               "]";
+        return "Directories [original=" + original + ", lowResolution=" + lowResolution + ", sorted=" + sorted + "]";
 
     }
 

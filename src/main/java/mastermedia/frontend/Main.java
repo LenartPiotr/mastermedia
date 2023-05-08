@@ -9,13 +9,13 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mastermedia.backend.FileManager;
 import mastermedia.backend.FolderStructure;
 import mastermedia.backend.settings.Settings;
+import mastermedia.frontend.controllers.AlbumController;
 import mastermedia.frontend.controllers.extra.Directory;
 
 public class Main extends Application {
@@ -28,50 +28,48 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
+        AlbumController albumController = new AlbumController();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("album_controller.fxml"));
-        Scene loginScene = new Scene(fxmlLoader.load());
-
+        Scene loginScene = albumController.createScene();
 
         stage.initStyle(StageStyle.DECORATED);
         stage.setTitle("MasterMedia");
         stage.setScene(loginScene);
 
-
         stage.show();
 
         // Pobranie listy albumów
         albumList = folderStructure.getSorted().list(new FilenameFilter() {
+
             @Override
-            public boolean accept(File dir, String name) {
-                return new File(dir, name).isDirectory();
-            }
+            public boolean accept(File dir, String name) { return new File(dir, name).isDirectory(); }
+
         });
 
+        for(int i = 0; i < Objects.requireNonNull(albumList).length; i++) {
 
-        for (int i = 0; i< Objects.requireNonNull(albumList).length; i++) {
             Directory directory = new Directory();
             directory.setName(albumList[i]);
             directoryList.add(directory);
 
         }
-//        for (Directory d:directoryList) System.out.println(d.getName());
+
+        for(Directory d : directoryList) System.out.println(d.getName());
 
         // Pobranie zdjęć w albumach
 
-        for(int i = 0; i< directoryList.size();i++){
+        for(int i = 0; i < directoryList.size(); i++) {
+
             String album = albumList[i];
             File albumFolder = new File(folderStructure.getSorted().getPath(), album);
             images = albumFolder.listFiles();
 
             directoryList.get(i).setFileList(Arrays.stream(images).toList());
+
         }
 
-
-
-//        assert images != null;
-//        for (Directory d:directoryList) System.out.println(String.valueOf(d.getFileList().get(0)));
-
+        // assert images != null;
+        for(Directory d : directoryList) System.out.println(String.valueOf(d.getFileList().get(0)));
 
     }
 
@@ -83,10 +81,8 @@ public class Main extends Application {
         folderStructure = new FolderStructure();
         folderStructure.createFolderStructure(s.getDirectories());
 
-//         new WindowsFFMPEGDownloader().download(folderStructure.getOriginal());
+        // new WindowsFFMPEGDownloader().download(folderStructure.getOriginal());
         launch();
-
-
 
     }
 

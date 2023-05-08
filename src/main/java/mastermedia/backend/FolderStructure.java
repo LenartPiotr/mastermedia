@@ -11,6 +11,7 @@ public class FolderStructure {
     private File original;
     private File lowResolution;
     private File sorted;
+    private File binaries;
 
     public void createFolderStructure(Directories dirs) {
 
@@ -20,6 +21,7 @@ public class FolderStructure {
         (original = new File(PUBLIC + "/" + dirs.getOriginal())).mkdirs();
         (lowResolution = new File(PUBLIC + "/" + dirs.getLowResolution())).mkdirs();
         (sorted = new File(PUBLIC + "/" + dirs.getSorted())).mkdirs();
+        (binaries = new File(PUBLIC + "/" + dirs.getBinaries())).mkdirs();
 
     }
 
@@ -34,5 +36,9 @@ public class FolderStructure {
     public File getLowResolution() { return lowResolution; }
 
     public File getSorted() { return sorted; }
+
+    public File getBinaries() { return binaries; }
+
+    public void setBinaries(File binaries) { this.binaries = binaries; }
 
 }
