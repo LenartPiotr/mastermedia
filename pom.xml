@@ -35,8 +35,12 @@
             <artifactId>javafx-graphics</artifactId>
             <version>19.0.2.1</version>
         </dependency>
-        <!-- Thanks for using https://jar-download.com -->
 
+        <dependency>
+            <groupId>net.bramp.ffmpeg</groupId>
+            <artifactId>ffmpeg</artifactId>
+            <version>0.7.0</version>
+        </dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>

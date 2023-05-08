@@ -1,4 +1,5 @@
 directories:
+  binaries: .bin/
   original: original/
   lowResolution: low-resolution/
   sorted: sorted/

@@ -4,6 +4,7 @@ module mastermedia {
     requires transitive javafx.graphics;
     requires transitive java.desktop;
     requires org.yaml.snakeyaml;
+    requires transitive ffmpeg;
 
     opens mastermedia.frontend to javafx.fxml;
     exports mastermedia.frontend;
@@ -13,6 +14,7 @@ module mastermedia {
     opens mastermedia.backend.settings to org.yaml.snakeyaml;
     exports mastermedia.backend;
     exports mastermedia.backend.settings;
+    exports mastermedia.backend.squisher;
     exports mastermedia.frontend.controllers.extra;
     opens mastermedia.frontend.controllers.extra to javafx.fxml;
 
