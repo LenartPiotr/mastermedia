@@ -16,7 +16,7 @@
     -fx-padding: 0;
 
 }
-.scroll-pane .scroll-bar:horizontal{
+.scroll-pane .scroll-bar:horizontal , .scroll-pane .scroll-bar:vertical{
     -fx-opacity: 0;
     -fx-visibility: hidden;
 }
@@ -49,4 +49,6 @@
 
     /*-fx-background-size: cover;*/
 }
+
+
 

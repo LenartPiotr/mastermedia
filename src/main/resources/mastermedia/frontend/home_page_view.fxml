@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #3d3d3e;" stylesheets="@css/home_page.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mastermedia.frontend.controllers.HomePageController">
 
-    <fx:include source="extra_fxml_file/menu_view.fxml" />
+    <fx:include source="menu_view.fxml" />
     <Label id="phones-label" layoutX="276.0" layoutY="57.0" prefHeight="66.0" prefWidth="161.0" text="Phones" textFill="WHITE">
         <font>
             <Font size="48.0" />

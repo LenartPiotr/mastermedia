@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,12 +18,25 @@ public class FileItemController implements Initializable {
     public Button cancelButton;
     public Button newDivisionButton;
 
+    public Rectangle clip;
+
     public void setData(File file){
-        nameSection.setText(file.getNameFile());
+//        nameSection.setText(file.getNameFile());
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        clip = new Rectangle();
+        clip.setWidth(183);
+        clip.setHeight(127);
+
+        clip.setArcHeight(20);
+        clip.setArcWidth(20);
+
+        albumPane.setClip(clip);
+
+
+
         cancelButton.setVisible(false);
         newDivisionButton.setVisible(false);
 
