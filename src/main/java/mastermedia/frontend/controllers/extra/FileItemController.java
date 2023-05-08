@@ -3,10 +3,13 @@ package mastermedia.frontend.controllers.extra;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import mastermedia.frontend.Main;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -19,9 +22,18 @@ public class FileItemController implements Initializable {
     public Button newDivisionButton;
 
     public Rectangle clip;
+    public Label title;
+    public enum type {DIRECTORY,FILE}
 
-    public void setData(File file){
-//        nameSection.setText(file.getNameFile());
+    public void setData(Directory directory) throws IOException {
+        title.setText(directory.getName());
+
+        albumPane.setImage(new Image(changePath(directory.fileList.get(0).getPath())));
+    }
+
+
+    private String changePath(String path){
+        return path.replace(".\\Public\\", "").replace("\\","/");
     }
 
     @Override

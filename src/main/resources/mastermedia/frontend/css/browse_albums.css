@@ -50,5 +50,11 @@
     /*-fx-background-size: cover;*/
 }
 
+.button{
+    -fx-text-fill:  #ffffff;
+    -fx-background-radius: 15px;
+    -fx-background-color:  #25abff;
+}
+
 
 

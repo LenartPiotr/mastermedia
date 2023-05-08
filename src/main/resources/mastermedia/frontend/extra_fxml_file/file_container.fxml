@@ -8,7 +8,7 @@
 
 <Pane fx:id="sectionPane" layoutX="-6.0" prefHeight="157.0" prefWidth="183.0" stylesheets="@../css/file_in_album.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mastermedia.frontend.controllers.extra.FileItemController">
     <children>
-        <Label fx:id="nameSection" layoutX="6.0" prefHeight="19.0" prefWidth="137.0" stylesheets="@../css/browse_files_album.css" text="Lato 2023" />
+        <Label fx:id="nameSection" layoutX="6.0" prefHeight="19.0" prefWidth="137.0" stylesheets="@../css/browse_files_in_album.css" text="Lato 2023" />
         <ImageView id="albumPane" fx:id="albumPane" fitHeight="127.0" fitWidth="183.0" layoutY="30.0" pickOnBounds="true" style="-fx-background-radius: 20;">
             <image>
                 <Image url="@../img/img.jpg" />

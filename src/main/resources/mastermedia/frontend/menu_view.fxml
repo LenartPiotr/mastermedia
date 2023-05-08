@@ -16,32 +16,6 @@
                     <Label id="main-label" layoutX="26.0" layoutY="87.0" style="-fx-font-family: &quot;Montserrat&quot;;" styleClass="menu-label" stylesheets="@css/menu.css" text="MediaMaster" textFill="WHITE" />
                 </children>
             </Pane>
-            <Button fx:id="home" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="215.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Home" textFill="WHITE">
-
-                <font>
-                    <Font name="SansSerif Regular" size="13.0" />
-                </font>
-         <graphic>
-            <ImageView fitHeight="25.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/icons/home_icon.png" />
-               </image>
-            </ImageView>
-         </graphic>
-            </Button>
-            <Button fx:id="search" mnemonicParsing="false"  prefHeight="50.0" prefWidth="215.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Search" textFill="#707070">
-
-                <font>
-                    <Font name="SansSerif Regular" size="13.0" />
-                </font>
-         <graphic>
-            <ImageView fitHeight="25.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/icons/browse_icon.png" />
-               </image>
-            </ImageView>
-         </graphic>
-            </Button>
             <Button fx:id="folder" mnemonicParsing="false" prefHeight="50.0" prefWidth="215.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Albums" textFill="#707070">
                 <font>
                     <Font size="13.0" />

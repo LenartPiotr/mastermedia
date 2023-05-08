@@ -1,6 +1,6 @@
 package mastermedia.frontend.controllers.extra;
 
-public class File {
+public class FileFrontController {
     String nameFile;
     String path;
 

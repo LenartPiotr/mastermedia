@@ -10,10 +10,7 @@ import mastermedia.frontend.SceneController;
 
 public class MenuController {
 
-    @FXML
-    Button home;
-    @FXML
-    Button search;
+
     @FXML
     Button folder;
     @FXML
@@ -21,35 +18,6 @@ public class MenuController {
 
     @FXML
     public void initialize() {
-
-        home.setOnAction(event -> {
-
-            home.setFont(Font.font("SansSerif", FontWeight.BOLD, 13));
-            try {
-
-                new SceneController().switchToScene(event, String.valueOf(XMLFile.HOME_PAGE_VIEW));
-
-            }catch(IOException e) {
-
-                throw new RuntimeException(e);
-
-            }
-
-        });
-
-        search.setOnAction(event -> {
-
-            try {
-
-                new SceneController().switchToScene(event, String.valueOf(XMLFile.BROWSE_FILES_VIEW));
-
-            }catch(IOException e) {
-
-                throw new RuntimeException(e);
-
-            }
-
-        });
 
         folder.setOnAction(event -> {
 

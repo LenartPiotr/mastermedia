@@ -1,32 +1,45 @@
 package mastermedia.frontend.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import mastermedia.frontend.controllers.extra.File;
+import mastermedia.frontend.Main;
+import mastermedia.frontend.SceneController;
 import mastermedia.frontend.controllers.extra.FileStructure;
+import mastermedia.frontend.controllers.extra.XMLFile;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
 
 public class AlbumController {
     public VBox vbox;
+    public Button EditButton;
     @FXML
     private ScrollPane scrollPane;
 
+    public Scene createScene() throws IOException {
 
-    public void initialize() {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("album_controller.fxml"));
 
-        List<File> ls = new ArrayList<>();
-
-        for(int i= 0; i<4;i++){
-            File file = new File();
-            file.setNameFile(" ");
-            ls.add(file);
-        }
-        vbox.getChildren().add(FileStructure.addGridPane(3,ls,200,400));
+        return new Scene(fxmlLoader.load());
 
     }
+
+
+    public void initialize() throws IOException {
+
+        EditButton.setOnAction(event -> {
+            try {
+                new SceneController().switchToScene(event, String.valueOf(XMLFile.BROWSE_FILES_IN_ALBUM_VIEW));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        vbox.getChildren().add(FileStructure.addGridPane(3,Main.directoryList,200,400));
+
+    }
+
 }

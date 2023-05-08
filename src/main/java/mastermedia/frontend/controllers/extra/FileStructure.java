@@ -13,20 +13,21 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import mastermedia.frontend.Main;
+import mastermedia.frontend.SceneController;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FileStructure {
-    public static void setMainVbox(VBox vbox){
+    public static void setMainVbox(VBox vbox,List<Directory> directoryList){
 
         for(int i = 0; i < 2;i++) {
             ImageView imageView = new ImageView();
             imageView.setFitHeight(13);
             imageView.setFitWidth(752);
 
-            GridPane gridPane = addGridPane(4, loadFiles(),127,186);
+            GridPane gridPane = addGridPane(4, directoryList,127,186);
 
 
             try {
@@ -61,20 +62,31 @@ public class FileStructure {
 
     }
 
-    public static GridPane addGridPane(int column, List<File> files,double heightImage, double widthImage){
+    public static GridPane addGridPane(int column, List<Directory> directoryList, double heightImage, double widthImage){
 
         GridPane gridPane = new GridPane();
 
         int columnCount = 0;
         int rowCount = 0;
 
-        for (File file : files) {
+        for (Directory directory : directoryList) {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("file_container.fxml"));
 
             try {
                 Pane pane = fxmlLoader.load();
+
+                pane.setOnMouseClicked(mouseEvent -> {
+                    try {
+                        new SceneController().switchToScene(mouseEvent, String.valueOf(XMLFile.SHOW_FILE_IN_ALBUM));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+
                 FileItemController fileItemController = fxmlLoader.getController();
-                fileItemController.setData(file);
+                fileItemController.setData(directory);
+
+
 
 
 //                #TODO zrobić skalowalny obraz
@@ -118,19 +130,19 @@ public class FileStructure {
         return gridPane;
     }
 
-
-    public static List<File> loadFiles(){
-        List<File> ls = new ArrayList<>();
+    public static List<Directory> loadFiles(){
+        List<Directory> ls = new ArrayList<>();
 
         for(int i= 0; i<20;i++){
-            File file = new File();
-            file.setNameFile(" ");
-            ls.add(file);
+            Directory directory = new Directory();
+            directory.setName(" ");
+            ls.add(directory);
         }
 
 
         return ls;
     }
+
 
 
     private static void resizePane(Bounds bounds, VBox mainVbox) {
