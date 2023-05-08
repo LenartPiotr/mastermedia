@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mastermedia.backend.FileManager;
@@ -30,9 +32,10 @@ public class Main extends Application {
 
         AlbumController albumController = new AlbumController();
 
-        Scene loginScene = albumController.createScene();
+        Scene loginScene =  new Scene(new FXMLLoader(Main.class.getResource("home_page_view.fxml")).load());
 
         stage.initStyle(StageStyle.DECORATED);
+//        stage.getIcons().add(new Image());
         stage.setTitle("MasterMedia");
         stage.setScene(loginScene);
 
