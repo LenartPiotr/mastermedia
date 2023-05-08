@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import mastermedia.frontend.Main;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,6 +30,10 @@ public class FileItemController implements Initializable {
         title.setText(directory.getName());
 
         albumPane.setImage(new Image(changePath(directory.fileList.get(0).getPath())));
+    }
+
+    public void showImageInAlbum(Directory directory, int i){
+        albumPane.setImage(new Image(changePath(directory.fileList.get(i).getPath())));
     }
 
 

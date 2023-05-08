@@ -38,7 +38,7 @@ public class AlbumController {
             }
         });
 
-        vbox.getChildren().add(FileStructure.addGridPane(3,Main.directoryList,200,400));
+        vbox.getChildren().add(FileStructure.addGridPaneDirectory(3,Main.directoryList,200,400));
 
     }
 

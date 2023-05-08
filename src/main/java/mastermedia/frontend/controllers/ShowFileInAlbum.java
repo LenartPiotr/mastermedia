@@ -13,6 +13,6 @@ public class ShowFileInAlbum implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        vbox.getChildren().add(FileStructure.addGridPane(3, Main.directoryList,200,200));
+        vbox.getChildren().add(FileStructure.addGridPaneDirectory(3, Main.directoryList,200,200));
     }
 }

@@ -15,6 +15,7 @@ import javafx.scene.text.Font;
 import mastermedia.frontend.Main;
 import mastermedia.frontend.SceneController;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +23,12 @@ import java.util.List;
 public class FileStructure {
     public static void setMainVbox(VBox vbox,List<Directory> directoryList){
 
-        for(int i = 0; i < 2;i++) {
+        for(int i = 0; i < directoryList.size();i++) {
             ImageView imageView = new ImageView();
             imageView.setFitHeight(13);
             imageView.setFitWidth(752);
 
-            GridPane gridPane = addGridPane(4, directoryList,127,186);
+            GridPane gridPane = addGridPaneFile(4, directoryList.get(i), 127,186);
 
 
             try {
@@ -35,7 +36,7 @@ public class FileStructure {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            Label albumTitle = new Label("Album nr " + i );
+            Label albumTitle = new Label(directoryList.get(i).getName());
             albumTitle.setFont(new Font("System",20));
             Pane paneLabel = new Pane(albumTitle);
             paneLabel.setPadding(new Insets(0, 0, 10, 0));
@@ -62,7 +63,65 @@ public class FileStructure {
 
     }
 
-    public static GridPane addGridPane(int column, List<Directory> directoryList, double heightImage, double widthImage){
+    public static GridPane addGridPaneFile(int column, Directory directory, double heightImage, double widthImage){
+
+        GridPane gridPane = new GridPane();
+
+        int columnCount = 0;
+        int rowCount = 0;
+
+        for (int i = 0; i < directory.getFileList().size();i++) {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("file_container.fxml"));
+
+            try {
+                Pane pane = fxmlLoader.load();
+
+                FileItemController fileItemController = fxmlLoader.getController();
+                fileItemController.showImageInAlbum(directory,i);
+
+
+//                #TODO zrobić skalowalny obraz
+//                fileItemController.albumPane.setFitWidth(widthImage);
+//                fileItemController.albumPane.setFitHeight(heightImage);
+//                fileItemController.clip.setWidth(widthImage);
+//                fileItemController.clip.setHeight(heightImage);
+//                fileItemController.clip.setArcHeight(20);
+//                fileItemController.clip.setArcWidth(20);
+
+                gridPane.add(pane, columnCount, rowCount);
+
+
+                columnCount++;
+
+                if (columnCount == column) { // Number of columns per row
+                    columnCount = 0;
+                    rowCount++;
+                }
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        ColumnConstraints column1 = new ColumnConstraints();
+        ColumnConstraints column2 = new ColumnConstraints();
+        ColumnConstraints column3 = new ColumnConstraints();
+        ColumnConstraints column4 = new ColumnConstraints();
+
+        // Wyśrodkowanie kolumn
+        column1.setHalignment(HPos.CENTER);
+        column2.setHalignment(HPos.CENTER);
+        column3.setHalignment(HPos.CENTER);
+        column4.setHalignment(HPos.CENTER);
+
+        // Dodanie ColumnConstraints do GridPane
+        gridPane.getColumnConstraints().addAll(column1, column2, column3,column4);
+
+
+        return gridPane;
+    }
+
+    public static GridPane addGridPaneDirectory(int column, List<Directory> directoryList, double heightImage, double widthImage){
 
         GridPane gridPane = new GridPane();
 
@@ -129,6 +188,9 @@ public class FileStructure {
 
         return gridPane;
     }
+
+
+
 
     public static List<Directory> loadFiles(){
         List<Directory> ls = new ArrayList<>();
