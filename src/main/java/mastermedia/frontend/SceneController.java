@@ -1,5 +1,6 @@
 package mastermedia.frontend;
 
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -10,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
+import mastermedia.frontend.controllers.ShowFileInAlbum;
+import mastermedia.frontend.controllers.extra.Directory;
 
 public class SceneController {
 
@@ -31,6 +34,9 @@ public class SceneController {
 
     }
 
+
+
+
     public void switchToSceneWithMenuItems(MenuItem menuItem, String nameFileXML) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(
                 nameFileXML.toLowerCase() + ".fxml")));
@@ -42,4 +48,14 @@ public class SceneController {
 
     }
 
+    public void switchToScene(javafx.scene.input.MouseEvent mouseEvent, String nameFileXML) throws IOException {
+
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(
+                nameFileXML.toLowerCase() + ".fxml")));
+
+        stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

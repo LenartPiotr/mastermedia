@@ -6,7 +6,7 @@ import mastermedia.backend.settings.Directories;
 
 public class FolderStructure {
 
-    public static final String PUBLIC = "Public";
+    public static final String PUBLIC = ".\\Public";
     private Directories directories;
     private File original;
     private File lowResolution;

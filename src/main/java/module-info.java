@@ -5,6 +5,7 @@ module mastermedia {
     requires transitive java.desktop;
     requires org.yaml.snakeyaml;
     requires transitive ffmpeg;
+//    requires lombok;
 
     opens mastermedia.frontend to javafx.fxml;
     exports mastermedia.frontend;

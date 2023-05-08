@@ -34,9 +34,7 @@
 }
 
 #newDivisionButton{
-
     -fx-background-color: #25abff;
-
 }
 
 #acceptButton{
@@ -46,5 +44,3 @@
 #cancelButton{
     -fx-background-color: #C90000;
 }
-
-

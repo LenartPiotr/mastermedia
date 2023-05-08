@@ -1,0 +1,15 @@
+
+.button{
+    -fx-background-radius: 20;
+    -fx-text-fill: white;
+
+}
+#cancelButton{
+    -fx-background-color: #C90000;
+
+}
+
+#newDivisionButton{
+    -fx-background-color: #25abff;
+
+}
