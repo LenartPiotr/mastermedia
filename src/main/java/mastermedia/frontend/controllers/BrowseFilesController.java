@@ -9,7 +9,6 @@ import mastermedia.frontend.Main;
 import mastermedia.frontend.controllers.extra.FileStructure;
 
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 

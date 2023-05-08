@@ -5,12 +5,16 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<Pane fx:id="sectionPane" layoutX="-6.0" prefHeight="185.0" prefWidth="191.0" stylesheets="@css/file_container.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mastermedia.frontend.controllers.extra.FileItemController">
+<Pane fx:id="sectionPane" layoutX="-6.0" prefHeight="215.0" prefWidth="191.0" stylesheets="@css/file_container.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mastermedia.frontend.controllers.extra.FileItemController">
     <ImageView id="albumPane" fx:id="albumPane" fitHeight="127.0" fitWidth="186.0" layoutX="5.0" layoutY="13.0" smooth="false">
         <Image url="@img/img.jpg" />
     </ImageView>
+   <Label fx:id="title" layoutX="5.0" layoutY="170.0" prefHeight="45.0" prefWidth="186.0" style="-fx-alignment: center;" text="Tytuł" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <font>
+         <Font size="21.0" />
+      </font></Label>
     <Button fx:id="cancelButton" layoutX="39.0" layoutY="91.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="120.0" text="Usuń" />
     <Button fx:id="newDivisionButton" layoutX="38.0" layoutY="49.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="122.0" text="Przenieś" />
-   <Label fx:id="title" layoutX="23.0" layoutY="152.0" prefHeight="27.0" prefWidth="147.0" text="Tytuł" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
 </Pane>

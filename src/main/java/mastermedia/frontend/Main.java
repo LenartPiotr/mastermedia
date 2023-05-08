@@ -9,15 +9,14 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mastermedia.backend.FileManager;
 import mastermedia.backend.FolderStructure;
 import mastermedia.backend.settings.Settings;
-import mastermedia.frontend.controllers.AlbumController;
 import mastermedia.frontend.controllers.extra.Directory;
-import mastermedia.frontend.controllers.extra.XMLFile;
 
 public class Main extends Application {
 
@@ -29,9 +28,9 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        AlbumController albumController = new AlbumController();
 
-        Scene loginScene = albumController.createScene();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("album_controller.fxml"));
+        Scene loginScene = new Scene(fxmlLoader.load());
 
 
         stage.initStyle(StageStyle.DECORATED);
@@ -56,7 +55,7 @@ public class Main extends Application {
             directoryList.add(directory);
 
         }
-        for (Directory d:directoryList) System.out.println(d.getName());
+//        for (Directory d:directoryList) System.out.println(d.getName());
 
         // Pobranie zdjęć w albumach
 
@@ -71,7 +70,7 @@ public class Main extends Application {
 
 
 //        assert images != null;
-        for (Directory d:directoryList) System.out.println(String.valueOf(d.getFileList().get(0)));
+//        for (Directory d:directoryList) System.out.println(String.valueOf(d.getFileList().get(0)));
 
 
     }

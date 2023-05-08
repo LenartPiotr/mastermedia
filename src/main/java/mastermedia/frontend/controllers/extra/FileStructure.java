@@ -14,9 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import mastermedia.frontend.Main;
 import mastermedia.frontend.SceneController;
-import mastermedia.frontend.controllers.ShowFileInAlbum;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +66,9 @@ public class FileStructure {
     public static GridPane addGridPaneFile(int column, Directory directory){
 
         GridPane gridPane = new GridPane();
+        gridPane.setVgap(20);
+        gridPane.setHgap(20);
+
 
         int columnCount = 0;
         int rowCount = 0;
@@ -79,6 +80,7 @@ public class FileStructure {
                 Pane pane = fxmlLoader.load();
 
                 FileItemController fileItemController = fxmlLoader.getController();
+//                fileItemController.
                 fileItemController.showImageInAlbum(directory,i);
 
 
@@ -119,6 +121,8 @@ public class FileStructure {
     public static GridPane addGridPaneDirectory(int column, List<Directory> directoryList, double heightImage, double widthImage){
 
         GridPane gridPane = new GridPane();
+        gridPane.setHgap(50);
+        gridPane.setVgap(20);
 
         int columnCount = 0;
         int rowCount = 0;

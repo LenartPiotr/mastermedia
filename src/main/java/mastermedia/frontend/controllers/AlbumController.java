@@ -1,8 +1,6 @@
 package mastermedia.frontend.controllers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
@@ -20,16 +18,6 @@ public class AlbumController {
     private ScrollPane scrollPane;
 
 
-
-    public Scene createScene() throws IOException {
-
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("album_controller.fxml"));
-
-        return new Scene(fxmlLoader.load());
-
-    }
-
-
     public void initialize() throws IOException {
 
         EditButton.setOnAction(event -> {
@@ -40,7 +28,7 @@ public class AlbumController {
             }
         });
 
-        vbox.getChildren().add(FileStructure.addGridPaneDirectory(3,Main.directoryList,200,250));
+        vbox.getChildren().add(FileStructure.addGridPaneDirectory(3,Main.directoryList,150,220));
 
     }
 
