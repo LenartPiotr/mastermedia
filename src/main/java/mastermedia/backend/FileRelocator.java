@@ -13,7 +13,7 @@ import java.util.Map;
 
 import mastermedia.backend.settings.FileTypes;
 
-public class CreateRelocate {
+public class FileRelocator {
 
     private File inputPath;
     private File outputPath;
@@ -23,7 +23,7 @@ public class CreateRelocate {
                                                                  Map.entry(7, "Lipiec"), Map.entry(8, "Sierpień"), Map.entry(9, "Wrzesień"),
                                                                  Map.entry(10, "Październik"), Map.entry(11, "Listopad"), Map.entry(12, "Grudzień"));
 
-    public CreateRelocate(File inputPath, File outputPath, FileTypes config) {
+    public FileRelocator(File inputPath, File outputPath, FileTypes config) {
 
         this.inputPath = inputPath;
         this.outputPath = outputPath;
