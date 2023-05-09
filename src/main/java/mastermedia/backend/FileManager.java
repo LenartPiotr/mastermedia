@@ -21,7 +21,8 @@ public class FileManager {
 
         File configFile = new File("config.yml");
 
-        if(!configFile.exists()) {
+        // FIXME: debug only
+        if(/*!configFile.exists()*/ true) {
 
             InputStream configFileResourceStream = this.getClass().getResourceAsStream("config.yml");
 
