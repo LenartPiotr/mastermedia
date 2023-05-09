@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import mastermedia.backend.BackendService;
 import mastermedia.backend.FileManager;
 import mastermedia.backend.FileRelocator;
 import mastermedia.backend.FolderStructure;
@@ -25,8 +26,6 @@ import net.bramp.ffmpeg.FFprobe;
 
 public class Main extends Application {
 
-    public static FolderStructure folderStructure;
-    public static Settings settings;
     public static List<Directory> directoryList = new ArrayList<>();
     public static File[] images;
     public static String[] albumList;
@@ -45,27 +44,13 @@ public class Main extends Application {
 
         stage.show();
 
-        FileManager fm = new FileManager();
-        fm.checkFiles();
-        settings = fm.getSettings();
-        folderStructure = new FolderStructure();
-        folderStructure.createFolderStructure(settings.getDirectories());
-
-        if(folderStructure.getBinaries().toPath().resolve("bin/ffmpeg.exe").toFile().exists() &&
-           folderStructure.getBinaries().toPath().resolve("bin/ffprobe.exe").toFile().exists()) {
-
-            ImageSquisher is = new ImageSquisher(new FFmpeg(folderStructure.getBinaries().toPath().resolve("bin/ffmpeg.exe").toString()),
-                                                 new FFprobe(folderStructure.getBinaries().toPath().resolve("bin/ffprobe.exe").toString()),
-                                                 settings.getThumbnails());
-
-            is.squishFolder(folderStructure.getOriginal(), folderStructure.getLowResolution());
-
-            new FileRelocator(folderStructure.getLowResolution(), folderStructure.getSorted(), settings.getFiletypes()).relocateFiles();
-
-        }
+        // TODO
+        // Use this methods
+        // BackendService.getInstance().getAlbumList();
+        // BackendService.getInstance().getImagesInAlbum("album1");
 
         // Pobranie listy albumów
-        albumList = folderStructure.getSorted().list(new FilenameFilter() {
+        albumList = BackendService.getInstance().getFolderStructure().getSorted().list(new FilenameFilter() {
 
             @Override
             public boolean accept(File dir, String name) { return new File(dir, name).isDirectory(); }
@@ -87,7 +72,7 @@ public class Main extends Application {
         for(int i = 0; i < directoryList.size(); i++) {
 
             String album = albumList[i];
-            File albumFolder = new File(folderStructure.getSorted().getPath(), album);
+            File albumFolder = new File(BackendService.getInstance().getFolderStructure().getSorted().getPath(), album);
             images = albumFolder.listFiles();
 
             directoryList.get(i).setFileList(Arrays.stream(images).toList());
@@ -100,6 +85,13 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+
+        try {
+            BackendService.getInstance().init();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
 
         // new WindowsFFMPEGDownloader().download(folderStructure.getOriginal());
         launch();
