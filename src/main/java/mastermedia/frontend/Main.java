@@ -11,18 +11,22 @@ import java.util.Objects;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mastermedia.backend.FileManager;
+import mastermedia.backend.FileRelocator;
 import mastermedia.backend.FolderStructure;
 import mastermedia.backend.settings.Settings;
+import mastermedia.backend.squisher.ImageSquisher;
 import mastermedia.frontend.controllers.AlbumController;
 import mastermedia.frontend.controllers.extra.Directory;
+import net.bramp.ffmpeg.FFmpeg;
+import net.bramp.ffmpeg.FFprobe;
 
 public class Main extends Application {
 
     public static FolderStructure folderStructure;
+    public static Settings settings;
     public static List<Directory> directoryList = new ArrayList<>();
     public static File[] images;
     public static String[] albumList;
@@ -32,14 +36,33 @@ public class Main extends Application {
 
         AlbumController albumController = new AlbumController();
 
-        Scene loginScene =  new Scene(new FXMLLoader(Main.class.getResource("home_page_view.fxml")).load());
+        Scene loginScene = new Scene(new FXMLLoader(Main.class.getResource("home_page_view.fxml")).load());
 
         stage.initStyle(StageStyle.DECORATED);
-//        stage.getIcons().add(new Image());
+        // stage.getIcons().add(new Image());
         stage.setTitle("MasterMedia");
         stage.setScene(loginScene);
 
         stage.show();
+
+        FileManager fm = new FileManager();
+        fm.checkFiles();
+        settings = fm.getSettings();
+        folderStructure = new FolderStructure();
+        folderStructure.createFolderStructure(settings.getDirectories());
+
+        if(folderStructure.getBinaries().toPath().resolve("bin/ffmpeg.exe").toFile().exists() &&
+           folderStructure.getBinaries().toPath().resolve("bin/ffprobe.exe").toFile().exists()) {
+
+            ImageSquisher is = new ImageSquisher(new FFmpeg(folderStructure.getBinaries().toPath().resolve("bin/ffmpeg.exe").toString()),
+                                                 new FFprobe(folderStructure.getBinaries().toPath().resolve("bin/ffprobe.exe").toString()),
+                                                 settings.getThumbnails());
+
+            is.squishFolder(folderStructure.getOriginal(), folderStructure.getLowResolution());
+
+            new FileRelocator(folderStructure.getLowResolution(), folderStructure.getSorted(), settings.getFiletypes()).relocateFiles();
+
+        }
 
         // Pobranie listy albumów
         albumList = folderStructure.getSorted().list(new FilenameFilter() {
@@ -77,12 +100,6 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-
-        FileManager fm = new FileManager();
-        fm.checkFiles();
-        Settings s = fm.getSettings();
-        folderStructure = new FolderStructure();
-        folderStructure.createFolderStructure(s.getDirectories());
 
         // new WindowsFFMPEGDownloader().download(folderStructure.getOriginal());
         launch();
