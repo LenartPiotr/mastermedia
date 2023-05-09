@@ -16,7 +16,7 @@
                     <Label id="main-label" layoutX="26.0" layoutY="87.0" style="-fx-font-family: &quot;Montserrat&quot;;" styleClass="menu-label" stylesheets="@css/menu.css" text="MediaMaster" textFill="WHITE" />
                 </children>
             </Pane>
-            <Button fx:id="folder" mnemonicParsing="false" prefHeight="50.0" prefWidth="215.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Albums" textFill="#707070">
+            <Button fx:id="folder" mnemonicParsing="false" prefHeight="50.0" prefWidth="215.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Albumy" textFill="#707070">
                 <font>
                     <Font size="13.0" />
                 </font>
@@ -27,7 +27,7 @@
                </image></ImageView>
          </graphic>
             </Button>
-            <Button fx:id="settings" mnemonicParsing="false" prefHeight="50.0" prefWidth="215.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Settings" textFill="#707070">
+            <Button fx:id="settings" mnemonicParsing="false" prefHeight="50.0" prefWidth="215.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Ustawienia" textFill="#707070">
 
                 <font>
                     <Font size="13.0" />
