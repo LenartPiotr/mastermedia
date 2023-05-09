@@ -28,7 +28,7 @@ public class FileStructure {
             imageView.setFitHeight(13);
             imageView.setFitWidth(752);
 
-            GridPane gridPane = addGridPaneFile(4, directoryList.get(i));
+            GridPane gridPane = addGridPaneFile(4, directoryList.get(i),false);
 
 
             try {
@@ -63,7 +63,7 @@ public class FileStructure {
 
     }
 
-    public static GridPane addGridPaneFile(int column, Directory directory){
+    public static GridPane addGridPaneFile(int column, Directory directory,Boolean edit){
 
         GridPane gridPane = new GridPane();
         gridPane.setVgap(20);
@@ -80,7 +80,7 @@ public class FileStructure {
                 Pane pane = fxmlLoader.load();
 
                 FileItemController fileItemController = fxmlLoader.getController();
-//                fileItemController.
+
                 fileItemController.showImageInAlbum(directory,i);
 
 
@@ -90,7 +90,7 @@ public class FileStructure {
 
                 columnCount++;
 
-                if (columnCount == column) { // Number of columns per row
+                if (columnCount == column) {
                     columnCount = 0;
                     rowCount++;
                 }
@@ -162,7 +162,7 @@ public class FileStructure {
 
                 columnCount++;
 
-                if (columnCount == column) { // Number of columns per row
+                if (columnCount == column) {
                     columnCount = 0;
                     rowCount++;
                 }
@@ -172,40 +172,9 @@ public class FileStructure {
             }
         }
 
-//        ColumnConstraints column1 = new ColumnConstraints();
-//        ColumnConstraints column2 = new ColumnConstraints();
-//        ColumnConstraints column3 = new ColumnConstraints();
-//        ColumnConstraints column4 = new ColumnConstraints();
-//
-//        // Wyśrodkowanie kolumn
-//        column1.setHalignment(HPos.CENTER);
-//        column2.setHalignment(HPos.CENTER);
-//        column3.setHalignment(HPos.CENTER);
-//        column4.setHalignment(HPos.CENTER);
-//
-//        // Dodanie ColumnConstraints do GridPane
-//        gridPane.getColumnConstraints().addAll(column1, column2, column3,column4);
-
 
         return gridPane;
     }
-
-
-
-
-    public static List<Directory> loadFiles(){
-        List<Directory> ls = new ArrayList<>();
-
-        for(int i= 0; i<20;i++){
-            Directory directory = new Directory();
-            directory.setName(" ");
-            ls.add(directory);
-        }
-
-
-        return ls;
-    }
-
 
 
     private static void resizePane(Bounds bounds, VBox mainVbox) {
