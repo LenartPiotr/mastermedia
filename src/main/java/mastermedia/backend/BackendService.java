@@ -58,6 +58,22 @@ public class BackendService {
         return folder.listFiles();
     }
 
+    public void deleteImages(File[] files){
+        //
+    }
+
+    public void rotateImages(int degrees, File[] files){
+        //
+    }
+
+    public void flipVertical(File[] files){
+        //
+    }
+
+    public void flipHorizontal(File[] files){
+        //
+    }
+
     public Settings getSettings() { return settings; }
     public FolderStructure getFolderStructure() { return folderStructure; }
 }
