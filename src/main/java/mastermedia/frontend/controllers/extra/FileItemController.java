@@ -1,5 +1,10 @@
 package mastermedia.frontend.controllers.extra;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -7,11 +12,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class FileItemController implements Initializable {
     public Pane sectionPane;
@@ -27,14 +27,14 @@ public class FileItemController implements Initializable {
     public void setData(Directory directory) throws IOException {
         title.setText(directory.getName());
 
-        albumPane.setImage(new Image(changePath(directory.fileList.get(0).getPath())));
+        albumPane.setImage(new Image(directory.fileList.get(0).toURI().toString()));
     }
 
     public void showImageInAlbum(Directory directory, int i){
         title.setVisible(false);
         sectionPane.setPrefWidth(albumPane.getFitWidth());
         sectionPane.setPrefHeight(albumPane.getFitHeight());
-        albumPane.setImage(new Image(changePath(directory.fileList.get(i).getPath())));
+        albumPane.setImage(new Image(directory.fileList.get(i).toURI().toString()));
     }
 
 
