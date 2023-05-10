@@ -7,6 +7,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import mastermedia.backend.BackendService;
 import mastermedia.frontend.SceneController;
 import mastermedia.frontend.controllers.extra.FileItemController;
 import mastermedia.frontend.controllers.extra.FileStructure;
@@ -60,22 +61,27 @@ public class ShowFileInAlbum implements Initializable {
                 editButton.setText("Zapisz");
                 editPanel.setVisible(true);
                 isClicked.set(true);
-                vbox.getChildren().removeAll();
-                try {
-                    new SceneController().switchToScene(event, String.valueOf(XMLFile.SHOW_FILE_IN_ALBUM));
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+
 
 //                vbox.getChildren().add(FileStructure.addGridPaneFile(4,directoryTemporary,true,mainPane));
             }
         });
 
-        rotateLeftButton.setOnAction(event -> {});
-        rotateRightButton.setOnAction(event -> {});
-        flipHorizontallyButton.setOnAction(event -> {});
-        flipVerticallyButton.setOnAction(event -> {});
-        deleteButton.setOnAction(event -> {});
+        rotateLeftButton.setOnAction(event -> {
+          //  BackendService.getInstance().rotateImages();
+        });
+        rotateRightButton.setOnAction(event -> {
+            //BackendService.getInstance().rotateImages();
+        });
+        flipHorizontallyButton.setOnAction(event -> {
+           // BackendService.getInstance().flipHorizontal();
+        });
+        flipVerticallyButton.setOnAction(event -> {
+           // BackendService.getInstance().flipVertical();
+        });
+        deleteButton.setOnAction(event -> {
+           // BackendService.getInstance().deleteImages();
+        });
 
 
         backButton.setOnAction(event -> {
