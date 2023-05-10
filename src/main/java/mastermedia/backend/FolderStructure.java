@@ -7,6 +7,7 @@ import mastermedia.backend.settings.Directories;
 public class FolderStructure {
 
     public static final String PUBLIC = "Public";
+    public static final String BINARIES = ".bin";
     private Directories directories;
     private File original;
     private File lowResolution;
@@ -21,7 +22,7 @@ public class FolderStructure {
         (original = new File(PUBLIC + "/" + dirs.getOriginal())).mkdirs();
         (lowResolution = new File(PUBLIC + "/" + dirs.getLowResolution())).mkdirs();
         (sorted = new File(PUBLIC + "/" + dirs.getSorted())).mkdirs();
-        (binaries = new File(PUBLIC + "/" + dirs.getBinaries())).mkdirs();
+        (binaries = new File(BINARIES)).mkdirs();
 
     }
 
