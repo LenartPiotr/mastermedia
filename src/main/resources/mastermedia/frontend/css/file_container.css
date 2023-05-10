@@ -13,3 +13,8 @@
     -fx-background-color: #25abff;
 
 }
+
+#colorPane{
+    -fx-background-color: #25abff;
+    -fx-opacity: 50%;
+}

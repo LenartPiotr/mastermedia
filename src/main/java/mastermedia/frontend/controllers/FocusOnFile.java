@@ -1,9 +1,11 @@
 package mastermedia.frontend.controllers;
 
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import mastermedia.frontend.SceneController;
 import mastermedia.frontend.controllers.extra.Directory;
 import mastermedia.frontend.controllers.extra.FileStructure;
@@ -23,12 +25,18 @@ public class FocusOnFile implements Initializable {
     public Pane leftArrow;
 
     public  Directory directory = FileStructure.directoryTemporary;
+    public VBox paneImage;
     List<File> fileList = directory.getFileList();
 
 
     public void showImage(int i){
 
         focusedImg.setImage(new Image(fileList.get(i).toURI().toString()));
+
+        focusedImg.setFitWidth(400);
+        focusedImg.setPreserveRatio(true);
+        paneImage.setAlignment(Pos.CENTER);
+
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -47,12 +55,15 @@ public class FocusOnFile implements Initializable {
         });
 
         rightArrow.setOnMouseClicked(mouseEvent -> {
-            showImage(i.incrementAndGet());
+            if(i.get() < fileList.size())
+                i.set(0);
+            showImage(i.getAndIncrement());
         });
 
         leftArrow.setOnMouseClicked(mouseEvent -> {
-
-            showImage(i.decrementAndGet());
+            if(i.get() == 0)
+                i.set(fileList.size() - 1 );
+            showImage(i.getAndDecrement());
 
         });
 

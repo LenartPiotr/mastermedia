@@ -44,22 +44,22 @@
          </Button>
          <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="165.0" layoutY="211.0" pickOnBounds="true" preserveRatio="true">
             <image>
-               <Image url="@img/icons/home_icon.png" />
+               <Image url="@img/icons/menu/home_icon.png" />
             </image>
          </ImageView>
          <ImageView fitHeight="27.0" fitWidth="30.0" layoutX="214.0" layoutY="209.0" pickOnBounds="true" preserveRatio="true">
             <image>
-               <Image url="@img/icons/browse_icon.png" />
+               <Image url="@img/icons/menu/browse_icon.png" />
             </image>
          </ImageView>
          <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="261.0" layoutY="209.0" pickOnBounds="true" preserveRatio="true">
             <image>
-               <Image url="@img/icons/album_icon.png" />
+               <Image url="@img/icons/menu/album_icon.png" />
             </image>
          </ImageView>
          <ImageView fitHeight="27.0" fitWidth="30.0" layoutX="167.0" layoutY="263.0" pickOnBounds="true" preserveRatio="true">
             <image>
-               <Image url="@img/icons/settings_icon.png" />
+               <Image url="@img/icons/menu/settings_icon.png" />
             </image>
          </ImageView>
       </children>

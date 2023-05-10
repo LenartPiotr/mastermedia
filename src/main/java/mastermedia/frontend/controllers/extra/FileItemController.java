@@ -22,6 +22,9 @@ public class FileItemController implements Initializable {
 
     public Rectangle clip;
     public Label title;
+    public Pane colorPane;
+
+
     public enum type {DIRECTORY,FILE}
 
     public void setData(Directory directory) throws IOException {
@@ -30,12 +33,14 @@ public class FileItemController implements Initializable {
         albumPane.setImage(new Image(directory.fileList.get(0).toURI().toString()));
     }
 
-    public void showImageInAlbum(Directory directory, int i){
+    public void showImageInAlbum(Directory directory, int i,Boolean edit){
         title.setVisible(false);
         sectionPane.setPrefWidth(albumPane.getFitWidth());
         sectionPane.setPrefHeight(albumPane.getFitHeight());
         albumPane.setImage(new Image(directory.fileList.get(i).toURI().toString()));
+
     }
+
 
 
 
@@ -52,21 +57,23 @@ public class FileItemController implements Initializable {
 
 
 
+
         cancelButton.setVisible(false);
         newDivisionButton.setVisible(false);
+//        checkBoxEdit.setVisible(false);
 
         AtomicBoolean isClicked = new AtomicBoolean(false);
 
-        albumPane.setOnMouseClicked(event -> {
-            if (isClicked.get()) {
-                cancelButton.setVisible(false);
-                newDivisionButton.setVisible(false);
-                isClicked.set(false);
-            } else {
-                cancelButton.setVisible(true);
-                newDivisionButton.setVisible(true);
-                isClicked.set(true);
-            }
-        });
+//        albumPane.setOnMouseClicked(event -> {
+//            if (isClicked.get()) {
+//                cancelButton.setVisible(false);
+//                newDivisionButton.setVisible(false);
+//                isClicked.set(false);
+//            } else {
+//                cancelButton.setVisible(true);
+//                newDivisionButton.setVisible(true);
+//                isClicked.set(true);
+//            }
+//        });
     }
 }

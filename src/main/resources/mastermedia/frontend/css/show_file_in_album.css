@@ -13,3 +13,10 @@
     -fx-text-fill:  #ffffff;
     -fx-background-radius: 15px;
 }
+
+#flipHorizontallyButton,#flipVerticallyButton{
+    -fx-background-color: #00B90C;
+}
+#deleteButton{
+    -fx-background-color:#C90000;
+}

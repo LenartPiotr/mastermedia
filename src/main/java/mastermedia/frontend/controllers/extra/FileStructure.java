@@ -42,8 +42,7 @@ public class FileStructure {
 
 
                 FileItemController fileItemController = fxmlLoader.getController();
-
-                fileItemController.showImageInAlbum(directory,i);
+                fileItemController.showImageInAlbum(directory,i, edit);
 
 
                 gridPane.add(pane, columnCount, rowCount);
@@ -58,6 +57,8 @@ public class FileStructure {
 
 
                 int positionOfFile = i;
+
+                if(!edit){
                 pane.setOnMouseClicked(mouseEvent -> {
                     filePosition = positionOfFile;
                     FXMLLoader fxmlLoaderFocusOnImage = new FXMLLoader(Main.class.getResource("focus_on_file.fxml"));
@@ -68,15 +69,14 @@ public class FileStructure {
                         throw new RuntimeException(e);
                     }
 
+                });}
 
-//                        new SceneController().switchToScene(mouseEvent, String.valueOf(XMLFile.FOCUS_ON_FILE));
-
-                });
 
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        }
+                }
+
 
         ColumnConstraints column1 = new ColumnConstraints();
         ColumnConstraints column2 = new ColumnConstraints();
@@ -154,13 +154,5 @@ public class FileStructure {
         return gridPane;
     }
 
-
-    private static void resizePane(Bounds bounds, VBox mainVbox) {
-        double newWidth = bounds.getMaxX();
-        double newHeight = bounds.getMaxY();
-
-        mainVbox.setPrefWidth(newWidth);
-        mainVbox.setPrefHeight(newHeight);
-    }
 
 }
