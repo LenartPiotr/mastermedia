@@ -36,18 +36,6 @@ public class SceneController {
 
 
 
-
-    public void switchToSceneWithMenuItems(MenuItem menuItem, String nameFileXML) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(
-                nameFileXML.toLowerCase() + ".fxml")));
-        stage = (Stage)menuItem.getParentPopup().getOwnerWindow();
-
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-    }
-
     public void switchToScene(javafx.scene.input.MouseEvent mouseEvent, String nameFileXML) throws IOException {
 
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(

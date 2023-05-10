@@ -15,56 +15,19 @@ import javafx.scene.text.Font;
 import mastermedia.frontend.Main;
 import mastermedia.frontend.SceneController;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FileStructure {
     public static Directory directoryTemporary = new Directory();
-    public static void setMainVbox(VBox vbox,List<Directory> directoryList){
-
-        for(int i = 0; i < directoryList.size();i++) {
-            ImageView imageView = new ImageView();
-            imageView.setFitHeight(13);
-            imageView.setFitWidth(752);
-
-            GridPane gridPane = addGridPaneFile(4, directoryList.get(i),false);
-
-
-            try {
-                imageView.setImage(new Image(Main.class.getResource("/mastermedia/frontend/img/line.png").openStream()));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            Label albumTitle = new Label(directoryList.get(i).getName());
-            albumTitle.setFont(new Font("System",20));
-            Pane paneLabel = new Pane(albumTitle);
-            paneLabel.setPadding(new Insets(0, 0, 10, 0));
-            vbox.getChildren().add(paneLabel);
-
-            vbox.getChildren().add(gridPane);
-
-            Pane pane = new Pane(imageView);
-            pane.setMaxSize(752,13);
-
-            pane.setPadding(new Insets(0, 0, 10, 0));
-
-
-            vbox.getChildren().add(pane);
-
-        }
-
-        vbox.boundsInParentProperty().addListener((observable, oldValue, newValue) -> resizePane(newValue,vbox));
-
-        // Inicjalne dostosowanie rozmiaru Pane do zawartości GridPane
-        resizePane(vbox.getBoundsInParent(),vbox);
-
-
-
-    }
+    public static List<File> fileList = new ArrayList<>();
+    public static int filePosition;
 
     public static GridPane addGridPaneFile(int column, Directory directory,Boolean edit){
 
+        fileList = directory.getFileList();
         GridPane gridPane = new GridPane();
         gridPane.setVgap(20);
         gridPane.setHgap(20);
@@ -73,16 +36,17 @@ public class FileStructure {
         int columnCount = 0;
         int rowCount = 0;
 
-        for (int i = 0; i < directory.getFileList().size();i++) {
+        for (int i = 0; i < fileList.size();i++) {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("file_container.fxml"));
+
 
             try {
                 Pane pane = fxmlLoader.load();
 
+
                 FileItemController fileItemController = fxmlLoader.getController();
 
                 fileItemController.showImageInAlbum(directory,i);
-
 
 
                 gridPane.add(pane, columnCount, rowCount);
@@ -94,6 +58,18 @@ public class FileStructure {
                     columnCount = 0;
                     rowCount++;
                 }
+
+
+                int positionOfFile = i;
+                pane.setOnMouseClicked(mouseEvent -> {
+                    try {
+                        filePosition = positionOfFile;
+                        new SceneController().switchToScene(mouseEvent, String.valueOf(XMLFile.FOCUS_ON_FILE));
+
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
 
             } catch (IOException e) {
                 throw new RuntimeException(e);

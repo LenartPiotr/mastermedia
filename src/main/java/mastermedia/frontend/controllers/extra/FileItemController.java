@@ -39,11 +39,6 @@ public class FileItemController implements Initializable {
 
 
 
-
-    private String changePath(String path){
-        return path.replace(".\\Public\\", "").replace("\\","/");
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         clip = new Rectangle();
