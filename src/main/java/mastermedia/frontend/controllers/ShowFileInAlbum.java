@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import mastermedia.frontend.SceneController;
 import mastermedia.frontend.controllers.extra.FileStructure;
@@ -22,12 +23,13 @@ public class ShowFileInAlbum implements Initializable {
     public Label title;
     public Button editButton;
     public Button backButton;
+    public AnchorPane mainPane;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         title.setText(directoryTemporary.getName());
-        vbox.getChildren().add(FileStructure.addGridPaneFile(4,directoryTemporary,false));
+        vbox.getChildren().add(FileStructure.addGridPaneFile(4,directoryTemporary,false,mainPane));
 
         scrollPane.setVvalue(0.001);
         scrollPane.setHvalue(2);
@@ -47,9 +49,6 @@ public class ShowFileInAlbum implements Initializable {
 
             }
         });
-
-
-
 
 
 

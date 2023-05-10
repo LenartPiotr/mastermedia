@@ -7,10 +7,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import mastermedia.frontend.Main;
 import mastermedia.frontend.SceneController;
@@ -25,7 +22,7 @@ public class FileStructure {
     public static List<File> fileList = new ArrayList<>();
     public static int filePosition;
 
-    public static GridPane addGridPaneFile(int column, Directory directory,Boolean edit){
+    public static GridPane addGridPaneFile(int column, Directory directory, Boolean edit, AnchorPane anchorPane){
 
         fileList = directory.getFileList();
         GridPane gridPane = new GridPane();
@@ -62,13 +59,18 @@ public class FileStructure {
 
                 int positionOfFile = i;
                 pane.setOnMouseClicked(mouseEvent -> {
+                    filePosition = positionOfFile;
+                    FXMLLoader fxmlLoaderFocusOnImage = new FXMLLoader(Main.class.getResource("focus_on_file.fxml"));
                     try {
-                        filePosition = positionOfFile;
-                        new SceneController().switchToScene(mouseEvent, String.valueOf(XMLFile.FOCUS_ON_FILE));
-
+                        Pane pane1 = fxmlLoaderFocusOnImage.load();
+                        anchorPane.getChildren().add(pane1);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
+
+
+//                        new SceneController().switchToScene(mouseEvent, String.valueOf(XMLFile.FOCUS_ON_FILE));
+
                 });
 
             } catch (IOException e) {
