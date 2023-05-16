@@ -1,11 +1,12 @@
 package mastermedia.backend;
 
+import mastermedia.backend.metadata.FileMetadata;
+import mastermedia.backend.metadata.MetadataManager;
 import mastermedia.backend.settings.Settings;
 import mastermedia.backend.squisher.ImageSquisher;
 import net.bramp.ffmpeg.FFmpeg;
 import net.bramp.ffmpeg.FFprobe;
 import net.coobird.thumbnailator.Thumbnails;
-import net.coobird.thumbnailator.tasks.UnsupportedFormatException;
 
 import javax.imageio.ImageIO;
 import java.awt.geom.AffineTransform;
@@ -14,13 +15,13 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 public class BackendService {
     private static BackendService instance;
     private Settings settings;
     private FolderStructure folderStructure;
+    private MetadataManager metadataManager;
     private BackendService(){
         //
     }
@@ -32,9 +33,13 @@ public class BackendService {
     public void init() throws IOException {
         FileManager fm = new FileManager();
         fm.checkFiles();
+
         settings = fm.getSettings();
         folderStructure = new FolderStructure();
         folderStructure.createFolderStructure(settings.getDirectories());
+
+        metadataManager = new MetadataManager("metadata.yml");
+        metadataManager.read();
 
         if(folderStructure.getBinaries().toPath().resolve("bin/ffmpeg.exe").toFile().exists() &&
                 folderStructure.getBinaries().toPath().resolve("bin/ffprobe.exe").toFile().exists()) {
@@ -43,10 +48,32 @@ public class BackendService {
                     new FFprobe(folderStructure.getBinaries().toPath().resolve("bin/ffprobe.exe").toString()),
                     settings.getThumbnails());
 
-            is.squishFolder(folderStructure.getOriginal(), folderStructure.getLowResolution());
+            // Create new data
+            for (File f : Objects.requireNonNull(folderStructure.getOriginal().listFiles())){
+                if (metadataManager.getFilesData().stream().anyMatch(m -> m.getFileName().equals(f.getName())))
+                    continue;
+                metadataManager.getFilesData().add(new FileMetadata(f.getName(), FileMetadata.ProcessingStage.SOURCE, ""));
+            }
 
+            // Squish images
+            // is.squishFolder(folderStructure.getOriginal(), folderStructure.getLowResolution());
+            for (FileMetadata data : metadataManager.getFilesData()){
+                if (!data.getProcessingStage().equals(FileMetadata.ProcessingStage.SOURCE)) continue;
+                is.squishFile(
+                        folderStructure.getOriginal().toPath().resolve(data.getFileName()).toFile(),
+                        folderStructure.getLowResolution().toPath().resolve(data.getFileName()).toFile()
+                );
+                data.setProcessingStage(FileMetadata.ProcessingStage.MINI);
+            }
+
+            // Reallocate
             new FileRelocator(folderStructure.getLowResolution(), folderStructure.getSorted(), settings.getFiletypes()).relocateFiles();
+            for (FileMetadata data : metadataManager.getFilesData()){
+                if (data.getProcessingStage().equals(FileMetadata.ProcessingStage.MINI))
+                    data.setProcessingStage(FileMetadata.ProcessingStage.SORTED);
+            }
 
+            metadataManager.save();
         }
     }
 
@@ -67,11 +94,10 @@ public class BackendService {
     public void deleteImages(File[] files){
         for(File file : files){
             if(file.delete()){
-                System.out.println("Deleted the file: " + file.getName());
-            } else {
-                System.out.println("Failed to delete the file: " + file.getName());
+                metadataManager.getFilesData().stream().filter(m -> m.getFileName().equals(file.getName())).forEach(m -> m.setProcessingStage(FileMetadata.ProcessingStage.DELETED));
             }
         }
+        metadataManager.save();
     }
 
     public void rotateImages(int degrees, File[] files){

@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,7 +15,6 @@ import mastermedia.backend.BackendService;
 import mastermedia.frontend.controllers.AlbumController;
 import mastermedia.frontend.controllers.extra.Directory;
 import mastermedia.frontend.controllers.extra.TreeOfDirectories;
-
 
 public class Main extends Application {
 
@@ -39,15 +37,6 @@ public class Main extends Application {
         stage.setScene(loginScene);
 
         stage.show();
-
-
-
-        // TODO
-        // Use this methods
-        // BackendService.getInstance().getAlbumList();
-        // BackendService.getInstance().getImagesInAlbum("album1");
-
-
     }
 
     public static void main(String[] args) {
@@ -59,7 +48,6 @@ public class Main extends Application {
             return;
         }
 
-        // new WindowsFFMPEGDownloader().download(folderStructure.getOriginal());
         launch();
 
     }

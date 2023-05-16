@@ -17,6 +17,7 @@ module mastermedia {
     opens mastermedia.frontend.controllers to javafx.fxml;
 
     opens mastermedia.backend.settings to org.yaml.snakeyaml;
+    exports mastermedia.backend.metadata;
     exports mastermedia.backend;
     exports mastermedia.backend.settings;
     exports mastermedia.backend.squisher;

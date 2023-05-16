@@ -1,6 +1,9 @@
 package mastermedia.backend.metadata;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.io.File;
+
 public class FileMetadata {
     public enum ProcessingStage {
         SOURCE, MINI, SORTED, DELETED
@@ -13,6 +16,14 @@ public class FileMetadata {
 
     @JsonProperty("processing_stage")
     private ProcessingStage processingStage;
+
+    public FileMetadata(){}
+
+    public FileMetadata(String name, ProcessingStage stage, String miniaturePath){
+        this.fileName = name;
+        this.processingStage = stage;
+        this.miniaturePath = miniaturePath;
+    }
 
     public void setFileName(String fileName) {
         this.fileName = fileName;

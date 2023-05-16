@@ -64,17 +64,11 @@ public class ImageSquisher implements IFileSquisher, IFolderSquisher {
 
     @Override
     public boolean squishFolder(File source, File destination) throws IOException {
-
         if(!source.isDirectory()) return false;
-
         for(File image : source.listFiles()) {
-
             squishFile(image, destination.toPath().resolve(image.getName()).toFile());
-
         }
-
         return true;
-
     }
 
 }
