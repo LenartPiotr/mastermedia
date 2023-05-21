@@ -55,15 +55,15 @@ public class FocusOnFile implements Initializable {
         });
 
         rightArrow.setOnMouseClicked(mouseEvent -> {
-            if(i.get() < fileList.size())
-                i.set(0);
-            showImage(i.getAndIncrement());
+            if(i.get() == fileList.size() - 1)
+                i.set(-1);
+            showImage(i.incrementAndGet());
         });
 
         leftArrow.setOnMouseClicked(mouseEvent -> {
             if(i.get() == 0)
-                i.set(fileList.size() - 1 );
-            showImage(i.getAndDecrement());
+                i.set(fileList.size() );
+            showImage(i.decrementAndGet());
 
         });
 
