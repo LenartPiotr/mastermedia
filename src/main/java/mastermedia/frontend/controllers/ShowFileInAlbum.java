@@ -63,6 +63,20 @@ public class ShowFileInAlbum implements Initializable {
 
 
         editButton.setOnAction(event -> {
+            editButton.setVisible(false);
+
+            backButton.setOnAction(event1 -> {
+                if(backButton.getText().equals("Powrót")){
+                    try {
+                        new SceneController().switchToScene(event, String.valueOf(XMLFile.AlBUM_CONTROLLER));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }else {
+                    editButton.setVisible(true);
+                    editButtonAction(gridPane, false, "Edytuj", "Powrót");
+                }
+            });
 
             if (isClicked.get()) {
 
@@ -70,7 +84,7 @@ public class ShowFileInAlbum implements Initializable {
 
             } else {
 
-                editButtonAction(gridPane,true,"Zapisz","Anuluj");
+                editButtonAction(gridPane,true,"Zapisz","Zakończ");
 
             }
         });
@@ -80,12 +94,11 @@ public class ShowFileInAlbum implements Initializable {
             BackendService.getInstance().rotateImages(270,eliminateNullElement(FileStructure.selectedFiles));
             clearAfterOperation(gridPane,true);
 
-            editButton.setOnAction(event1 -> {
-                editButtonAction(gridPane,true,"Zapisz","Anuluj");
-            });
+
 
             backButton.setOnAction(event1 -> {
                 BackendService.getInstance().rotateImages(90,eliminateNullElement(FileStructure.selectedFiles));
+                editButton.setVisible(true);
                 editButtonAction(gridPane,false,"Edytuj","Powrót");
 
             });
@@ -96,13 +109,12 @@ public class ShowFileInAlbum implements Initializable {
             BackendService.getInstance().rotateImages(90,eliminateNullElement(FileStructure.selectedFiles));
             clearAfterOperation(gridPane,true);
 
-            editButton.setOnAction(event1 -> {
-                editButtonAction(gridPane,true,"Zapisz","Anuluj");
-            });
 
             backButton.setOnAction(event1 -> {
                 BackendService.getInstance().rotateImages(270,eliminateNullElement(FileStructure.selectedFiles));
-                editButtonAction(gridPane,false,"Edytuj","Powrót");
+                editButton.setVisible(true);
+                editButtonAction(gridPane,true,"Zapisz","Anuluj");
+
 
             });
 
@@ -112,13 +124,12 @@ public class ShowFileInAlbum implements Initializable {
             BackendService.getInstance().flipHorizontal(eliminateNullElement(FileStructure.selectedFiles));
             clearAfterOperation(gridPane,true);
 
-            editButton.setOnAction(event1 -> {
-                editButtonAction(gridPane,true,"Zapisz","Anuluj");
-            });
 
             backButton.setOnAction(event1 -> {
                 BackendService.getInstance().flipHorizontal(eliminateNullElement(FileStructure.selectedFiles));
-                editButtonAction(gridPane,false,"Edytuj","Powrót");
+                editButton.setVisible(true);
+                editButtonAction(gridPane,true,"Zapisz","Anuluj");
+
 
             });
 
@@ -129,13 +140,11 @@ public class ShowFileInAlbum implements Initializable {
             BackendService.getInstance().flipVertical(eliminateNullElement(FileStructure.selectedFiles));
             clearAfterOperation(gridPane,true);
 
-            editButton.setOnAction(event1 -> {
-                editButtonAction(gridPane,true,"Zapisz","Anuluj");
-            });
-
             backButton.setOnAction(event1 -> {
                 BackendService.getInstance().flipVertical(eliminateNullElement(FileStructure.selectedFiles));
+                editButton.setVisible(true);
                 editButtonAction(gridPane,false,"Edytuj","Powrót");
+
 
             });
 
