@@ -72,13 +72,24 @@
          </Button>
          <Button fx:id="rotateRightButton" layoutX="70.0" layoutY="8.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="48.0">
             <graphic>
-               <ImageView  fitHeight="17.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="17.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@img/icons/editPanel/rotate_right.png" />
                   </image>
                </ImageView>
             </graphic>
          </Button>
+      </children>
+   </Pane>
+   <Pane fx:id="warningPane" layoutX="420.0" layoutY="210.0" prefHeight="320.0" prefWidth="461.0">
+      <children>
+         <Label layoutX="58.0" layoutY="69.0" prefHeight="96.0" prefWidth="346.0" text="Czy na pewno chcesz usunąć wybrane elementy" textFill="WHITE" wrapText="true">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+         <Button fx:id="acceptButtonWarning" layoutX="77.0" layoutY="225.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="94.0" text="OK" textFill="WHITE" />
+         <Button fx:id="cancelButtonWarning" layoutX="282.0" layoutY="225.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="94.0" text="Anuluj" textFill="WHITE" />
       </children>
    </Pane>
 

@@ -14,9 +14,18 @@
     -fx-background-radius: 15px;
 }
 
-#flipHorizontallyButton,#flipVerticallyButton{
+#flipHorizontallyButton,#flipVerticallyButton,#acceptButtonWarning{
     -fx-background-color: #00B90C;
 }
-#deleteButton{
+#deleteButton,#cancelButtonWarning{
     -fx-background-color:#C90000;
 }
+
+#warningPane{
+    -fx-background-color:  #38383a;
+    -fx-background-radius: 20;
+    -fx-opacity: 200%;
+}
+
+
+

@@ -3,10 +3,10 @@ package mastermedia.frontend.controllers.extra;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,17 +23,21 @@ public class FileItemController implements Initializable {
     public Rectangle clip;
     public Label title;
     public Pane colorPane;
+    public CheckBox checkBox;
+    public Pane selected_pane;
 
 
     public enum type {DIRECTORY,FILE}
 
     public void setData(Directory directory) throws IOException {
+        checkBox.setVisible(false);
         title.setText(directory.getName());
 
         albumPane.setImage(new Image(directory.fileList.get(0).toURI().toString()));
     }
 
     public void showImageInAlbum(Directory directory, int i,Boolean edit){
+        checkBox.setVisible(false);
         title.setVisible(false);
         sectionPane.setPrefWidth(albumPane.getFitWidth());
         sectionPane.setPrefHeight(albumPane.getFitHeight());
@@ -55,25 +59,10 @@ public class FileItemController implements Initializable {
 
         albumPane.setClip(clip);
 
-
-
-
+        selected_pane.setVisible(false);
         cancelButton.setVisible(false);
         newDivisionButton.setVisible(false);
-//        checkBoxEdit.setVisible(false);
 
-        AtomicBoolean isClicked = new AtomicBoolean(false);
 
-//        albumPane.setOnMouseClicked(event -> {
-//            if (isClicked.get()) {
-//                cancelButton.setVisible(false);
-//                newDivisionButton.setVisible(false);
-//                isClicked.set(false);
-//            } else {
-//                cancelButton.setVisible(true);
-//                newDivisionButton.setVisible(true);
-//                isClicked.set(true);
-//            }
-//        });
     }
 }
