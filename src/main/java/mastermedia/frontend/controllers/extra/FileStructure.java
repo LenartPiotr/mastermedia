@@ -82,6 +82,7 @@ public class FileStructure {
                                 isClicked.set(false);
 
                             } else {
+                                FileStructure.selectedFiles[positionOfFile] = null;
                                 fileItemController.selected_pane.setVisible(false);
                                 isClicked.set(true);
                             }
