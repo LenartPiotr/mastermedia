@@ -50,7 +50,7 @@ public class MetadataManager {
         try {
             list = mapper.readValue(new File(filename), MetadataList.class);
         } catch (IOException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             this.list = new MetadataList();
             list.setList(new ArrayList<>());
         }
