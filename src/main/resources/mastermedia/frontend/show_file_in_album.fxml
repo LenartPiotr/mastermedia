@@ -30,8 +30,8 @@
          <Font size="20.0" />
       </font>
    </Label>
-   <Button fx:id="editButton" layoutX="905.0" layoutY="51.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="105.0" text="Edytuj" />
-   <Button fx:id="backButton" layoutX="1027.0" layoutY="51.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="105.0" text="Powrót" />
+   <Button fx:id="editButton" layoutX="905.0" layoutY="51.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="105.0" text="Edytuj" textFill="WHITE" />
+   <Button fx:id="backButton" layoutX="1027.0" layoutY="51.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="105.0" text="Powrót" textFill="WHITE" />
    <Pane fx:id="editPanel" layoutX="501.0" layoutY="44.0" prefHeight="42.0" prefWidth="316.0">
       <children>
          <Button fx:id="rotateLeftButton" layoutX="6.0" layoutY="8.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="48.0">

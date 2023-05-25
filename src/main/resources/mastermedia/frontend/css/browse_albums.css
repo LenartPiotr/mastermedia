@@ -1,6 +1,4 @@
-.label{
-    -fx-text-fill:  #ffffff;
-}
+
 #nameSection{
     -fx-font-size: 20px;
 }
@@ -39,19 +37,14 @@
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
 
-
-
 }
 /*#TODO opracować suwak*/
 .scroll-bar:vertical .track{
     -fx-background-color: transparent;
-    /*-fx-background-image: url("../img/scroll_bare/scroll_bare_line.png");*/
-
-    /*-fx-background-size: cover;*/
 }
 
 .button{
-    -fx-text-fill:  #ffffff;
+    /*-fx-text-fill:  #ffffff;*/
     -fx-background-radius: 15px;
     -fx-background-color:  #25abff;
 }

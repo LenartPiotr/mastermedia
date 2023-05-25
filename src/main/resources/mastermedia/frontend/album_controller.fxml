@@ -20,6 +20,7 @@
          <VBox fx:id="vbox" prefHeight="697.0" prefWidth="898.0" />
       </content>
    </ScrollPane>
-   <Button fx:id="refreshButton" layoutX="1060.0" layoutY="65.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="117.0" text="Odśwież" />
+   <Button fx:id="refreshButton" layoutX="1060.0" layoutY="65.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="117.0" text="Odśwież" textFill="WHITE" />
+   <fx:include source="menu_view.fxml" />
 
 </AnchorPane>

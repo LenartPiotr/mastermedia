@@ -1,0 +1,22 @@
+.button{
+    -fx-background-color: #25abff;
+    -fx-background-radius: 15px;
+}
+
+#flipHorizontallyButton,#flipVerticallyButton,#acceptButtonWarning{
+    -fx-background-color: #00B90C;
+}
+#deleteButton,#deleteButton1{
+    -fx-background-color:#25abff;
+    -fx-background-radius: 15px;
+}
+
+#fileComboBox,#albumComboBox,#maxHeight,#maxWidth,#extra,
+#fileComboBox{
+    -fx-background-radius: 15px;
+    -fx-background-color: #29292A;
+    -fx-text-fill: white;
+
+
+}
+
