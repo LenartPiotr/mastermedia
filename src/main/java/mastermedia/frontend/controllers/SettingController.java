@@ -274,6 +274,7 @@ public class SettingController implements Initializable {
                                 settingChangerStart.setVideoMaxWidth(Integer.parseInt(maxWidth.getText()));
                                 maxWidth.setPromptText(maxWidth.getText());
                                 maxWidth.clear();
+                                maxWidth.setStyle("-fx-text-fill: white;");
                             }catch (NumberFormatException e){
                                 maxHeight.setStyle("-fx-text-fill: red;");
 
@@ -285,6 +286,7 @@ public class SettingController implements Initializable {
                                 settingChangerStart.setVideoMaxHeight(Integer.parseInt(maxHeight.getText()));
                                 maxHeight.setPromptText(maxHeight.getText());
                                 maxHeight.clear();
+                                maxHeight.setStyle("-fx-text-fill: white;");
                             }catch (NumberFormatException e){
                                 maxHeight.setStyle("-fx-text-fill: red;");
 
@@ -296,6 +298,7 @@ public class SettingController implements Initializable {
                                 settingChangerStart.setVideoBitrate(Integer.parseInt(extra.getText()));
                                 extra.setPromptText(extra.getText());
                                 extra.clear();
+                                extra.setStyle("-fx-text-fill: white;");
                             }catch (NumberFormatException e){
                             maxHeight.setStyle("-fx-text-fill: red;");
 
@@ -308,6 +311,7 @@ public class SettingController implements Initializable {
                                 settingChangerStart.setVideoFps(extra1.getText());
                                 extra1.setPromptText(extra1.getText());
                                 extra1.clear();
+                                extra1.setStyle("-fx-text-fill: white;");
                             }catch (NumberFormatException e){
                                 maxHeight.setStyle("-fx-text-fill: red;");
 
@@ -341,7 +345,7 @@ public class SettingController implements Initializable {
                             try {
                             settingChangerStart.setImageMaxWidth(Integer.parseInt(maxWidth.getText()));
                             maxWidth.clear();
-
+                            maxWidth.setStyle("-fx-text-fill: white;");
                             }catch (NumberFormatException e){
                                 maxHeight.setStyle("-fx-text-fill: red;");
 
