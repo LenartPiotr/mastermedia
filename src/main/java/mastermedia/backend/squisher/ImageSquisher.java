@@ -3,7 +3,7 @@ package mastermedia.backend.squisher;
 import java.io.File;
 import java.io.IOException;
 
-import mastermedia.backend.settings.Thumbnails;
+import mastermedia.backend.settings.properties.Thumbnails;
 import net.bramp.ffmpeg.FFmpeg;
 import net.bramp.ffmpeg.FFmpegExecutor;
 import net.bramp.ffmpeg.FFprobe;

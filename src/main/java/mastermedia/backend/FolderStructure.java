@@ -2,7 +2,7 @@ package mastermedia.backend;
 
 import java.io.File;
 
-import mastermedia.backend.settings.Directories;
+import mastermedia.backend.settings.properties.Directories;
 
 public class FolderStructure {
 

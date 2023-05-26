@@ -11,7 +11,8 @@ import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.Map;
 
-import mastermedia.backend.settings.FileTypes;
+import mastermedia.backend.settings.properties.FileType;
+import mastermedia.backend.settings.properties.FileTypes;
 
 public class FileRelocator {
 
@@ -63,13 +64,19 @@ public class FileRelocator {
 
     private Map<String, String> parseFileTypes(FileTypes config) {
 
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> extensionToFolderMap = new HashMap<>();
 
-        for(String folder : config.getVideo()) map.put(folder, "Video");
+        for (FileType ft : config.getFileTypeList()){
+            for (String extension : ft.getExtensions()){
+                extensionToFolderMap.put(extension, ft.getName());
+            }
+        }
 
-        for(String folder : config.getImage()) map.put(folder, "Image");
+        /*for(String folder : config.getVideo()) map.put(folder, "Video");
 
-        return map;
+        for(String folder : config.getImage()) map.put(folder, "Image");*/
+
+        return extensionToFolderMap;
 
     }
 

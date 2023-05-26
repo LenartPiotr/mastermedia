@@ -2,9 +2,13 @@ directories:
   original: original/
   lowResolution: low-resolution/
   sorted: sorted/
+  copy: copy/
 filetypes:
-  video: [mp4, mkv, avi]
-  image: [png, jpg, jpeg]
+  fileTypeList:
+    - name: Wideo
+      extensions: [mp4, mkv, avi]
+    - name: Zdjecia
+      extensions: [png, jpg, jpeg]
 thumbnails: # compressed images
   maxWidth: 1024
   maxHeight: 1024

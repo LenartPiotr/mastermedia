@@ -23,6 +23,8 @@ module mastermedia {
     exports mastermedia.backend.squisher;
     exports mastermedia.frontend.controllers.extra;
     opens mastermedia.frontend.controllers.extra to javafx.fxml;
+    exports mastermedia.backend.settings.properties;
+    opens mastermedia.backend.settings.properties to org.yaml.snakeyaml;
 
 }
 

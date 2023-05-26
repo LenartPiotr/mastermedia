@@ -1,4 +1,4 @@
-package mastermedia.backend.settings;
+package mastermedia.backend.settings.properties;
 
 public class Directories {
 
@@ -6,6 +6,20 @@ public class Directories {
     private String original;
     private String lowResolution;
     private String sorted;
+    private String copy;
+
+    public Directories(){}
+    public Directories(Directories directories){
+        this.binaries = directories.binaries;
+        this.original = directories.original;
+        this.lowResolution = directories.lowResolution;
+        this.sorted = directories.sorted;
+        this.copy = directories.copy;
+    }
+
+    public void setCopy(String copy) { this.copy = copy; }
+
+    public String getCopy() { return copy; }
 
     public String getBinaries() { return binaries; }
 

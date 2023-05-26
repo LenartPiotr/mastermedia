@@ -1,10 +1,17 @@
-package mastermedia.backend.settings;
+package mastermedia.backend.settings.properties;
 
 public class Thumbnails {
 
     private int maxWidth;
     private int maxHeight;
     private int quality;
+
+    public Thumbnails(){}
+    public Thumbnails(Thumbnails thumbnails){
+        this.maxWidth = thumbnails.maxWidth;
+        this.maxHeight = thumbnails.maxHeight;
+        this.quality = thumbnails.quality;
+    }
 
     public int getMaxWidth() { return maxWidth; }
 

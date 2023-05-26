@@ -1,11 +1,24 @@
 package mastermedia.backend.settings;
 
+import mastermedia.backend.settings.properties.Directories;
+import mastermedia.backend.settings.properties.FileTypes;
+import mastermedia.backend.settings.properties.Thumbnails;
+import mastermedia.backend.settings.properties.Toenails;
+
 public class Settings {
 
     private Directories directories;
     private FileTypes filetypes;
     private Thumbnails thumbnails;
     private Toenails toenails;
+
+    public Settings(){}
+    public Settings(Settings settings){
+        this.directories = new Directories(settings.directories);
+        this.filetypes = new FileTypes(settings.filetypes);
+        this.thumbnails = new Thumbnails(settings.thumbnails);
+        this.toenails = new Toenails(settings.toenails);
+    }
 
     public Directories getDirectories() { return directories; }
 

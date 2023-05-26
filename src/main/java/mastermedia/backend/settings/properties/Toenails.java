@@ -1,4 +1,4 @@
-package mastermedia.backend.settings;
+package mastermedia.backend.settings.properties;
 
 public class Toenails {
 
@@ -6,6 +6,14 @@ public class Toenails {
     private int maxHeight;
     private int bitrate;
     private String fps;
+
+    public Toenails(){}
+    public Toenails(Toenails toenails){
+        this.maxWidth = toenails.maxWidth;
+        this.maxHeight = toenails.maxHeight;
+        this.bitrate = toenails.bitrate;
+        this.fps = toenails.fps;
+    }
 
     public int getMaxWidth() { return maxWidth; }
 

@@ -16,13 +16,21 @@ import mastermedia.backend.settings.Settings;
 public class FileManager {
 
     private Settings settings;
+    private final File configFile;
+
+    public FileManager(){
+        configFile = new File("config.yml");
+    }
+
+    public File getConfigFile(){
+        return configFile;
+    }
 
     public void checkFiles() {
 
-        File configFile = new File("config.yml");
-
         // FIXME: debug only
-        if(/*!configFile.exists()*/ true) {
+        // Change to false due to getting file config from local path not from resources
+        if(/*!configFile.exists()*/ false) {
 
             InputStream configFileResourceStream = this.getClass().getResourceAsStream("config.yml");
 

@@ -2,6 +2,7 @@ package mastermedia.backend;
 
 import mastermedia.backend.metadata.FileMetadata;
 import mastermedia.backend.metadata.MetadataManager;
+import mastermedia.backend.settings.SettingChanger;
 import mastermedia.backend.settings.Settings;
 import mastermedia.backend.squisher.ImageSquisher;
 import net.bramp.ffmpeg.FFmpeg;
@@ -35,6 +36,7 @@ public class BackendService {
         fm.checkFiles();
 
         settings = fm.getSettings();
+
         folderStructure = new FolderStructure();
         folderStructure.createFolderStructure(settings.getDirectories());
 
@@ -153,4 +155,8 @@ public class BackendService {
 
     public Settings getSettings() { return settings; }
     public FolderStructure getFolderStructure() { return folderStructure; }
+
+    public SettingChanger getSettingsChanger(){
+        return new SettingChanger(settings, new FileManager().getConfigFile());
+    }
 }
