@@ -270,27 +270,48 @@ public class SettingController implements Initializable {
                                 settingChangerStart.getVideoBitrateDescription()
                         );
                         maxWidth.setOnAction(event1 -> {
-                            settingChangerStart.setVideoMaxWidth(Integer.parseInt(maxWidth.getText()));
-                            maxWidth.setPromptText(maxWidth.getText());
-                            maxWidth.clear();
+                            try {
+                                settingChangerStart.setVideoMaxWidth(Integer.parseInt(maxWidth.getText()));
+                                maxWidth.setPromptText(maxWidth.getText());
+                                maxWidth.clear();
+                            }catch (NumberFormatException e){
+                                maxHeight.setStyle("-fx-text-fill: red;");
+
+                            }
                         });
 
                         maxHeight.setOnAction(event1 -> {
-                            settingChangerStart.setVideoMaxHeight(Integer.parseInt(maxHeight.getText()));
-                            maxHeight.setPromptText(maxHeight.getText());
-                            maxHeight.clear();
+                            try {
+                                settingChangerStart.setVideoMaxHeight(Integer.parseInt(maxHeight.getText()));
+                                maxHeight.setPromptText(maxHeight.getText());
+                                maxHeight.clear();
+                            }catch (NumberFormatException e){
+                                maxHeight.setStyle("-fx-text-fill: red;");
+
+                        }
                         });
 
                         extra.setOnAction(event1 -> {
-                            settingChangerStart.setVideoBitrate(Integer.parseInt(extra.getText()));
-                            extra.setPromptText(extra.getText());
-                            extra.clear();
+                            try {
+                                settingChangerStart.setVideoBitrate(Integer.parseInt(extra.getText()));
+                                extra.setPromptText(extra.getText());
+                                extra.clear();
+                            }catch (NumberFormatException e){
+                            maxHeight.setStyle("-fx-text-fill: red;");
+
+                        }
+
                         });
 
                         extra1.setOnAction(event1 -> {
-                            settingChangerStart.setVideoFps(extra1.getText());
-                            extra1.setPromptText(extra1.getText());
-                            extra1.clear();
+                            try {
+                                settingChangerStart.setVideoFps(extra1.getText());
+                                extra1.setPromptText(extra1.getText());
+                                extra1.clear();
+                            }catch (NumberFormatException e){
+                                maxHeight.setStyle("-fx-text-fill: red;");
+
+                        }
                         });
 
                     }
@@ -317,18 +338,46 @@ public class SettingController implements Initializable {
                         );
 
                         maxWidth.setOnAction(event1 -> {
+                            try {
                             settingChangerStart.setImageMaxWidth(Integer.parseInt(maxWidth.getText()));
                             maxWidth.clear();
+
+                            }catch (NumberFormatException e){
+                                maxHeight.setStyle("-fx-text-fill: red;");
+
+                        }
                         });
 
                         maxHeight.setOnAction(event1 -> {
-                            settingChangerStart.setImageMaxHeight(Integer.parseInt(maxHeight.getText()));
-                            maxHeight.clear();
+                            maxHeight.setStyle("-fx-text-fill: white;");
+
+                            try {
+                                int value = Integer.parseInt(maxHeight.getText());
+                                settingChangerStart.setImageMaxHeight(value);
+                                maxHeight.clear();
+                            }catch (NumberFormatException e){
+                                maxHeight.setStyle("-fx-text-fill: red;");
+
+                            }
                         });
 
                         extra.setOnAction(event1 -> {
-                            settingChangerStart.setImageQuality(Integer.parseInt(extra.getText()));
-                            extra.clear();
+
+                            try {
+                                int quality = Integer.parseInt(extra.getText());
+                                if(quality>=0&&quality<=10) {
+                                    extra.setStyle("-fx-text-fill: white;");
+                                    settingChangerStart.setImageQuality(quality);
+                                    extra.clear();
+                                }
+                                else {
+                                    extra.setStyle("-fx-text-fill: red;");
+
+                                }
+                            }catch (NumberFormatException e){
+                                maxHeight.setStyle("-fx-text-fill: red;");
+
+                        }
                         });
 
                     }
@@ -411,8 +460,5 @@ public class SettingController implements Initializable {
 
         });
     }
-
-
-
 
 }
