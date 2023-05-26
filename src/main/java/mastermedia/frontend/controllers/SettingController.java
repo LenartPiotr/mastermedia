@@ -240,6 +240,8 @@ public class SettingController implements Initializable {
 
                     extensionsComboBox.getItems().clear();
                     if(i == 0){
+                        extra1.setVisible(true);
+                        extraLabel1.setVisible(true);
                         extraLabel.setText("FPS");
                         extraLabel1.setText("Bitrate");
 
