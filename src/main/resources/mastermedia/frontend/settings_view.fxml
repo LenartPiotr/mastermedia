@@ -7,11 +7,12 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #3d3d3e;" stylesheets="@css/settings.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mastermedia.frontend.controllers.SettingController">
-        <fx:include source="menu_view.fxml" />
+<AnchorPane fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #3d3d3e;" stylesheets="@css/settings.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mastermedia.frontend.controllers.SettingController">
+        <fx:include fx:id="menuView" source="menu_view.fxml" />
    <Label layoutX="320.0" layoutY="127.0" text="Albumy" textFill="WHITE">
       <font>
          <Font size="18.0" />
@@ -34,7 +35,7 @@
             </image></ImageView>
       </graphic>
    </Button>
-   <Button fx:id="deleteButton1" layoutX="758.0" layoutY="190.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0">
+   <Button fx:id="deleteButtonTypeFile" layoutX="758.0" layoutY="190.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0">
       <graphic>
          <ImageView fitHeight="10.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -42,29 +43,79 @@
             </image></ImageView>
       </graphic>
    </Button>
-   <Label layoutX="320.0" layoutY="427.0" prefHeight="27.0" prefWidth="277.0" text="Kompresja" textFill="WHITE">
-      <font>
-         <Font size="18.0" />
-      </font>
-   </Label>
-   <Label layoutX="320.0" layoutY="478.0" prefHeight="27.0" prefWidth="168.0" text="Maksymalna wysokość" textFill="WHITE">
-      <font>
-         <Font size="16.0" />
-      </font>
-   </Label>
-   <Label layoutX="320.0" layoutY="520.0" prefHeight="27.0" prefWidth="168.0" text="Maksymalna szerokość" textFill="WHITE">
-      <font>
-         <Font size="16.0" />
-      </font>
-   </Label>
-   <Label layoutX="320.0" layoutY="562.0" prefHeight="27.0" prefWidth="168.0" text="dodatkowe" textFill="WHITE">
-      <font>
-         <Font size="16.0" />
-      </font>
-   </Label>
-   <TextField fx:id="maxHeight" layoutX="537.0" layoutY="478.0" prefHeight="27.0" prefWidth="191.0" />
-   <TextField fx:id="maxWidth" layoutX="537.0" layoutY="520.0" prefHeight="27.0" prefWidth="191.0" />
-   <TextField fx:id="extra" layoutX="537.0" layoutY="562.0" prefHeight="27.0" prefWidth="191.0" />
-   <Line endX="762.0" layoutX="414.0" layoutY="335.0" startX="-100.0" stroke="WHITE" />
+   <Pane fx:id="compressionPane" layoutX="320.0" layoutY="427.0">
+      <children>
+         <Label prefHeight="27.0" prefWidth="277.0" text="Ustawienia" textFill="WHITE">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <Label layoutY="51.0" prefHeight="27.0" prefWidth="168.0" text="Maksymalna wysokość" textFill="WHITE">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+         <Label layoutY="93.0" prefHeight="27.0" prefWidth="168.0" text="Maksymalna szerokość" textFill="WHITE">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+         <Label fx:id="extraLabel" layoutY="135.0" prefHeight="27.0" prefWidth="168.0" text="dodatkowe" textFill="WHITE">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+         <TextField fx:id="maxHeight" alignment="CENTER_RIGHT" layoutX="217.0" layoutY="51.0" prefHeight="27.0" prefWidth="191.0" />
+         <TextField fx:id="maxWidth" alignment="CENTER_RIGHT" layoutX="217.0" layoutY="93.0" prefHeight="27.0" prefWidth="191.0" />
+         <TextField fx:id="extra" alignment="CENTER_RIGHT" layoutX="217.0" layoutY="135.0" prefHeight="27.0" prefWidth="191.0" />
+         <Label fx:id="extraLabel1" layoutY="181.0" prefHeight="27.0" prefWidth="168.0" text="dodatkowe" textFill="WHITE">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+         <TextField fx:id="extra1" alignment="CENTER_RIGHT" layoutX="217.0" layoutY="181.0" prefHeight="27.0" prefWidth="191.0" />
+      </children>
+   </Pane>
+   <Line fx:id="divisionLine" endX="762.0" layoutX="414.0" layoutY="335.0" startX="-100.0" stroke="WHITE" />
+   <Pane fx:id="browsePane" layoutX="817.0" layoutY="127.0" prefHeight="28.0" prefWidth="297.0">
+      <children>
+         <TextField fx:id="browseTextFile" layoutY="1.0" prefHeight="27.0" prefWidth="191.0" promptText="Wybierz folder" />
+         <Button fx:id="browseButton" layoutX="202.0" layoutY="1.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="28.0" text="..." textFill="WHITE" />
+      </children>
+   </Pane>
+   <TextField fx:id="addNewTypeFile" layoutX="815.0" layoutY="190.0" prefHeight="27.0" prefWidth="191.0" promptText="Dodaj kategorie" />
+   <Button fx:id="addButtonTypeFile" layoutX="815.0" layoutY="190.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="61.0" text="Dodaj" textFill="WHITE" />
+   <Pane fx:id="extensionPane" layoutX="320.0" layoutY="252.0">
+      <children>
+         <Label text="Rozszerzenia" textFill="WHITE">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <ComboBox fx:id="extensionsComboBox" layoutX="217.0" prefHeight="27.0" prefWidth="191.0" />
+         <TextField fx:id="addNewExtensions" layoutX="495.0" prefHeight="27.0" prefWidth="191.0" promptText="Dodaj rozszerzenie" />
+         <Button fx:id="addButtonExtension" layoutX="495.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="61.0" text="Dodaj" textFill="WHITE" />
+         <Button fx:id="deleteButtonExtensions" layoutX="439.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0">
+            <graphic>
+               <ImageView fitHeight="10.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@img/icons/editPanel/delete.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
+      </children>
+   </Pane>
+   <Button fx:id="addBrowsePane" layoutX="817.0" layoutY="126.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="61.0" text="Dodaj" textFill="WHITE" />
+   <Pane fx:id="savedChanges" layoutX="477.0" layoutY="217.0" prefHeight="320.0" prefWidth="461.0">
+      <children>
+         <Label alignment="CENTER" layoutX="58.0" layoutY="69.0" prefHeight="96.0" prefWidth="346.0" text="Zapisano wszytskie zmiany" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+         <Button fx:id="buttonOK" layoutX="184.0" layoutY="193.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="94.0" text="OK" textFill="WHITE" />
+      </children>
+   </Pane>
 
 </AnchorPane>

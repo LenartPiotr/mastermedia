@@ -18,16 +18,9 @@ import mastermedia.frontend.controllers.extra.TreeOfDirectories;
 
 public class Main extends Application {
 
-    public static List<Directory> directoryList = new ArrayList<>();
-    public static File[] images;
-    public static String[] albumList;
-
-    public static TreeOfDirectories treeOfDirectories;
 
     @Override
     public void start(Stage stage) throws IOException {
-
-        AlbumController albumController = new AlbumController();
 
         Scene loginScene = new Scene(new FXMLLoader(Main.class.getResource("home_page_view.fxml")).load());
 

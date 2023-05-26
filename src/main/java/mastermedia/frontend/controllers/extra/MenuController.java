@@ -13,9 +13,9 @@ public class MenuController {
 
 
     @FXML
-    Button folder;
+    public Button folder;
     @FXML
-    Button settings;
+    public Button settings;
 
     @FXML
     public void initialize() {
@@ -36,8 +36,7 @@ public class MenuController {
         });
 
         settings.setOnAction(event -> {
-            settings.setTextFill(Color.WHITE);
-            folder.setTextFill(Color.web("#707070"));
+
             try {
 
                 new SceneController().switchToScene(event, String.valueOf(XMLFile.SETTINGS_VIEW));
@@ -50,6 +49,12 @@ public class MenuController {
 
         });
 
+    }
+
+
+    public void setUpButton(){
+        settings.setTextFill(Color.WHITE);
+        folder.setTextFill(Color.web("#707070"));
     }
 
 

@@ -11,12 +11,24 @@
     -fx-background-radius: 15px;
 }
 
-#fileComboBox,#albumComboBox,#maxHeight,#maxWidth,#extra,
-#fileComboBox{
+
+.combo-box,.text-field{
     -fx-background-radius: 15px;
     -fx-background-color: #29292A;
     -fx-text-fill: white;
-
-
 }
 
+.combo-box .list-view .list-cell{
+    -fx-background-color: #29292A;
+    -fx-text-fill: white;
+}
+
+.combo-box .list-cell{
+    -fx-background-color: #29292A;
+    -fx-text-fill: white;
+}
+
+#savedChanges{
+    -fx-background-color: #29292A;
+    -fx-background-radius: 15px;
+}
