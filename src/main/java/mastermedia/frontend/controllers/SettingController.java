@@ -5,6 +5,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -56,6 +57,9 @@ public class SettingController implements Initializable {
     public Button addBrowsePane;
     public Pane savedChanges;
     public Button buttonOK;
+    public Button settings;
+    public Button folder;
+    public VBox menu;
 
 
     @Override
@@ -67,6 +71,7 @@ public class SettingController implements Initializable {
         }
         SettingChanger settingChangerStart = BackendService.getInstance().getSettingsChanger();
 
+        settingsMenu();
 
         compressionPane.setVisible(false);
         divisionLine.setVisible(false);
@@ -77,9 +82,7 @@ public class SettingController implements Initializable {
         savedChanges.setVisible(false);
 
 
-
         startSetup(settingChangerStart);
-
 
         cancelButton.setOnAction(event -> {
             try {
@@ -377,6 +380,37 @@ public class SettingController implements Initializable {
 
     }
 
+    public void settingsMenu(){
+        settings.setTextFill(Color.WHITE);
+        folder.setOnAction(event -> {
+
+            settings.setTextFill(Color.web("#707070"));
+            try {
+
+                new SceneController().switchToScene(event, String.valueOf(XMLFile.AlBUM_CONTROLLER));
+
+            }catch(IOException e) {
+
+                throw new RuntimeException(e);
+
+            }
+
+        });
+
+        settings.setOnAction(event -> {
+
+            try {
+
+                new SceneController().switchToScene(event, String.valueOf(XMLFile.SETTINGS_VIEW));
+
+            }catch(IOException e) {
+
+                throw new RuntimeException(e);
+
+            }
+
+        });
+    }
 
 
 

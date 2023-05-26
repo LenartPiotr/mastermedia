@@ -11,8 +11,44 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.layout.VBox?>
 <AnchorPane fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #3d3d3e;" stylesheets="@css/settings.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mastermedia.frontend.controllers.SettingController">
-        <fx:include fx:id="menuView" source="menu_view.fxml" />
+   <children>
+      <VBox fx:id = "menuView" prefHeight="720.0" prefWidth="215.0">
+
+      <children>
+         <Pane fx:id="pane" prefHeight="200.0" prefWidth="200.0" styleClass="menu-label" stylesheets="@css/menu.css">
+            <children>
+               <Label id="main-label" layoutX="26.0" layoutY="87.0" style="-fx-font-family: &quot;Montserrat&quot;;" styleClass="menu-label" stylesheets="@css/menu.css" text="MediaMaster" textFill="WHITE" />
+            </children>
+         </Pane>
+         <Button fx:id="folder" mnemonicParsing="false" prefHeight="50.0" prefWidth="215.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Albumy" textFill="#707070">
+            <font>
+               <Font size="13.0" />
+            </font>
+            <graphic>
+               <ImageView fitHeight="20.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@img/icons/menu/album_icon.png" />
+                  </image></ImageView>
+            </graphic>
+         </Button>
+         <Button fx:id="settings" mnemonicParsing="false" prefHeight="50.0" prefWidth="215.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Ustawienia" textFill="#707070">
+
+            <font>
+               <Font size="13.0" />
+            </font>
+            <graphic>
+               <ImageView fitHeight="25.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@img/icons/menu/settings_icon.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
+      </children>
+   </VBox>
+   </children>
    <Label layoutX="320.0" layoutY="127.0" text="Albumy" textFill="WHITE">
       <font>
          <Font size="18.0" />
