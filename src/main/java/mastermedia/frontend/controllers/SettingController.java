@@ -344,6 +344,7 @@ public class SettingController implements Initializable {
                         maxWidth.setOnAction(event1 -> {
                             try {
                             settingChangerStart.setImageMaxWidth(Integer.parseInt(maxWidth.getText()));
+                            maxWidth.setPromptText(maxWidth.getText());
                             maxWidth.clear();
                             maxWidth.setStyle("-fx-text-fill: white;");
                             }catch (NumberFormatException e){
@@ -358,6 +359,7 @@ public class SettingController implements Initializable {
                             try {
                                 int value = Integer.parseInt(maxHeight.getText());
                                 settingChangerStart.setImageMaxHeight(value);
+                                maxHeight.setPromptText(maxHeight.getText());
                                 maxHeight.clear();
                             }catch (NumberFormatException e){
                                 maxHeight.setStyle("-fx-text-fill: red;");
@@ -372,6 +374,7 @@ public class SettingController implements Initializable {
                                 if(quality>=0&&quality<=10) {
                                     extra.setStyle("-fx-text-fill: white;");
                                     settingChangerStart.setImageQuality(quality);
+                                    extra.setPromptText(extra.getText());
                                     extra.clear();
                                 }
                                 else {
