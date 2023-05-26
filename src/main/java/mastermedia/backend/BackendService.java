@@ -16,6 +16,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Objects;
 
 public class BackendService {
@@ -68,12 +69,15 @@ public class BackendService {
                 data.setProcessingStage(FileMetadata.ProcessingStage.MINI);
             }
 
-            // Reallocate
-            new FileRelocator(folderStructure.getLowResolution(), folderStructure.getSorted(), settings.getFiletypes()).relocateFiles();
+            // Reallocate low resolution
+            new FileRelocator(folderStructure.getLowResolution(), folderStructure.getSorted(), settings.getFiletypes(), false).relocateFiles();
             for (FileMetadata data : metadataManager.getFilesData()){
                 if (data.getProcessingStage().equals(FileMetadata.ProcessingStage.MINI))
                     data.setProcessingStage(FileMetadata.ProcessingStage.SORTED);
             }
+
+            // Reallocate originals
+            new FileRelocator(folderStructure.getOriginal(), folderStructure.getCopy(), settings.getFiletypes(), true).relocateFiles();
 
             metadataManager.save();
         }
@@ -95,9 +99,12 @@ public class BackendService {
 
     public void deleteImages(File[] files){
         for(File file : files){
+            // low-res
             if(file.delete()){
                 metadataManager.getFilesData().stream().filter(m -> m.getFileName().equals(file.getName())).forEach(m -> m.setProcessingStage(FileMetadata.ProcessingStage.DELETED));
             }
+            // high-res
+            getOriginalCopy(file).delete();
         }
         metadataManager.save();
     }
@@ -105,10 +112,16 @@ public class BackendService {
     public void rotateImages(int degrees, File[] files){
         for(File file : files){
             try {
+                // low-res
                 Thumbnails.of(file)
                         .scale(1) // keep original size
                         .rotate(degrees)
                         .toFile(file);
+                // high-res
+                Thumbnails.of(getOriginalCopy(file))
+                        .scale(1)
+                        .rotate(degrees)
+                        .toFile(getOriginalCopy(file));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -118,9 +131,14 @@ public class BackendService {
     public void flipVertical(File[] files){
         for(File file : files){
             try {
+                // low-res
                 BufferedImage img = ImageIO.read(file);
                 BufferedImage flippedImg = flip(img, true);
                 ImageIO.write(flippedImg, "jpg", file);
+                // high-res
+                BufferedImage img2 = ImageIO.read(getOriginalCopy(file));
+                BufferedImage flippedImg2 = flip(img2, true);
+                ImageIO.write(flippedImg2, "jpg", getOriginalCopy(file));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -130,13 +148,24 @@ public class BackendService {
     public void flipHorizontal(File[] files){
         for(File file : files){
             try {
+                // low-res
                 BufferedImage img = ImageIO.read(file);
                 BufferedImage flippedImg = flip(img, false);
                 ImageIO.write(flippedImg, "jpg", file);
+                // high-res
+                BufferedImage img2 = ImageIO.read(getOriginalCopy(file));
+                BufferedImage flippedImg2 = flip(img2, false);
+                ImageIO.write(flippedImg2, "jpg", getOriginalCopy(file));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    private File getOriginalCopy(File thumbnail){
+        String name = thumbnail.getName();
+        String parent = thumbnail.getParentFile().getName();
+        return new File(new File(folderStructure.getCopy(), parent), name);
     }
 
     private BufferedImage flip(BufferedImage img, boolean vertical) {

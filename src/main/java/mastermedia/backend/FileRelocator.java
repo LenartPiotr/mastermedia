@@ -19,16 +19,18 @@ public class FileRelocator {
     private File inputPath;
     private File outputPath;
     private Map<String, String> fileTypeMap;
+    private boolean copy;
     private static Map<Integer, String> monthMap = Map.ofEntries(Map.entry(1, "Styczeń"), Map.entry(2, "Luty"), Map.entry(3, "Marzec"),
                                                                  Map.entry(4, "Kwiecień"), Map.entry(5, "Maj"), Map.entry(6, "Czerwiec"),
                                                                  Map.entry(7, "Lipiec"), Map.entry(8, "Sierpień"), Map.entry(9, "Wrzesień"),
                                                                  Map.entry(10, "Październik"), Map.entry(11, "Listopad"), Map.entry(12, "Grudzień"));
 
-    public FileRelocator(File inputPath, File outputPath, FileTypes config) {
+    public FileRelocator(File inputPath, File outputPath, FileTypes config, boolean copy) {
 
         this.inputPath = inputPath;
         this.outputPath = outputPath;
         this.fileTypeMap = parseFileTypes(config);
+        this.copy = copy;
 
     }
 
@@ -50,7 +52,11 @@ public class FileRelocator {
 
                 if(!outputDirectory.exists()) { outputDirectory.mkdirs(); }
 
-                Files.move(file.toPath(), outputDirectory.toPath().resolve(file.getName()), StandardCopyOption.REPLACE_EXISTING);
+                if (this.copy){
+                    Files.copy(file.toPath(), outputDirectory.toPath().resolve(file.getName()), StandardCopyOption.REPLACE_EXISTING);
+                }else{
+                    Files.move(file.toPath(), outputDirectory.toPath().resolve(file.getName()), StandardCopyOption.REPLACE_EXISTING);
+                }
 
             }catch(Exception e) {
 
