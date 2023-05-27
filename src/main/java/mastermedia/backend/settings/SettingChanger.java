@@ -98,4 +98,8 @@ public class SettingChanger {
         }
         return false;
     }
+
+    public String getMessage(){
+        return this.message;
+    }
 }
