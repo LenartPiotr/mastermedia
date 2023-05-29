@@ -12,11 +12,11 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.layout.VBox?>
-<AnchorPane fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #3d3d3e;" stylesheets="@css/settings.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mastermedia.frontend.controllers.SettingController">
+<AnchorPane fx:id="mainAnchorPane" maxHeight="Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #3d3d3e;" stylesheets="@css/settings.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mastermedia.frontend.controllers.SettingController">
    <children>
-      <VBox fx:id = "menuView" prefHeight="720.0" prefWidth="215.0">
+      <VBox fx:id="menuView" prefHeight="720.0" prefWidth="215.0">
 
-      <children>
+         <children>
          <Pane fx:id="pane" prefHeight="200.0" prefWidth="200.0" styleClass="menu-label" stylesheets="@css/menu.css">
             <children>
                <Label id="main-label" layoutX="26.0" layoutY="87.0" style="-fx-font-family: &quot;Montserrat&quot;;" styleClass="menu-label" stylesheets="@css/menu.css" text="MediaMaster" textFill="WHITE" />
@@ -63,14 +63,6 @@
    <ComboBox fx:id="fileComboBox" layoutX="537.0" layoutY="190.0" prefHeight="27.0" prefWidth="191.0" />
    <Button fx:id="acceptButton" layoutX="938.0" layoutY="58.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" text="Zapisz" textFill="WHITE" />
    <Button fx:id="cancelButton" layoutX="1077.0" layoutY="58.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" text="Anuluj" textFill="WHITE" />
-   <Button fx:id="deleteButton" layoutX="758.0" layoutY="127.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0">
-      <graphic>
-         <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="@img/icons/editPanel/delete.png" />
-            </image></ImageView>
-      </graphic>
-   </Button>
    <Button fx:id="deleteButtonTypeFile" layoutX="758.0" layoutY="190.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0">
       <graphic>
          <ImageView fitHeight="10.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
@@ -79,44 +71,67 @@
             </image></ImageView>
       </graphic>
    </Button>
-   <Pane fx:id="compressionPane" layoutX="320.0" layoutY="427.0">
+   <Pane fx:id="compressionPane" layoutX="314.0" layoutY="348.0" prefHeight="234.0" prefWidth="863.0">
       <children>
-         <Label prefHeight="27.0" prefWidth="277.0" text="Ustawienia" textFill="WHITE">
-            <font>
-               <Font size="18.0" />
-            </font>
-         </Label>
-         <Label layoutY="51.0" prefHeight="27.0" prefWidth="168.0" text="Maksymalna wysokość" textFill="WHITE">
+         <Label layoutY="77.0" prefHeight="27.0" prefWidth="168.0" text="Maksymalna wysokość" textFill="WHITE">
             <font>
                <Font size="16.0" />
             </font>
          </Label>
-         <Label layoutY="93.0" prefHeight="27.0" prefWidth="168.0" text="Maksymalna szerokość" textFill="WHITE">
+         <Label layoutY="119.0" prefHeight="27.0" prefWidth="168.0" text="Maksymalna szerokość" textFill="WHITE">
             <font>
                <Font size="16.0" />
             </font>
          </Label>
-         <Label fx:id="extraLabel" layoutY="135.0" prefHeight="27.0" prefWidth="168.0" text="dodatkowe" textFill="WHITE">
+         <Label layoutY="161.0" prefHeight="27.0" prefWidth="168.0" text="FPS" textFill="WHITE">
             <font>
                <Font size="16.0" />
             </font>
          </Label>
-         <TextField fx:id="maxHeight" alignment="CENTER_RIGHT" layoutX="217.0" layoutY="51.0" prefHeight="27.0" prefWidth="191.0" />
-         <TextField fx:id="maxWidth" alignment="CENTER_RIGHT" layoutX="217.0" layoutY="93.0" prefHeight="27.0" prefWidth="191.0" />
-         <TextField fx:id="extra" alignment="CENTER_RIGHT" layoutX="217.0" layoutY="135.0" prefHeight="27.0" prefWidth="191.0" />
-         <Label fx:id="extraLabel1" layoutY="181.0" prefHeight="27.0" prefWidth="168.0" text="dodatkowe" textFill="WHITE">
+         <TextField fx:id="maxHeight" alignment="CENTER_RIGHT" layoutX="217.0" layoutY="77.0" prefHeight="27.0" prefWidth="191.0" />
+         <TextField fx:id="maxWidth" alignment="CENTER_RIGHT" layoutX="217.0" layoutY="119.0" prefHeight="27.0" prefWidth="191.0" />
+         <TextField fx:id="fps" alignment="CENTER_RIGHT" layoutX="217.0" layoutY="161.0" prefHeight="27.0" prefWidth="191.0" />
+         <Label layoutY="207.0" prefHeight="27.0" prefWidth="168.0" text="Bitrate" textFill="WHITE">
             <font>
                <Font size="16.0" />
             </font>
          </Label>
-         <TextField fx:id="extra1" alignment="CENTER_RIGHT" layoutX="217.0" layoutY="181.0" prefHeight="27.0" prefWidth="191.0" />
+         <TextField fx:id="bitrate" alignment="CENTER_RIGHT" layoutX="217.0" layoutY="207.0" prefHeight="27.0" prefWidth="191.0" />
+         <Label layoutX="455.0" layoutY="77.0" prefHeight="27.0" prefWidth="168.0" text="Maksymalna wysokość" textFill="WHITE">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+         <Label layoutX="455.0" layoutY="119.0" prefHeight="27.0" prefWidth="168.0" text="Maksymalna szerokość" textFill="WHITE">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+         <Label layoutX="455.0" layoutY="161.0" prefHeight="27.0" prefWidth="168.0" text="Jakość" textFill="WHITE">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+         <TextField fx:id="maxHeight1" alignment="CENTER_RIGHT" layoutX="672.0" layoutY="77.0" prefHeight="27.0" prefWidth="191.0" />
+         <TextField fx:id="maxWidth1" alignment="CENTER_RIGHT" layoutX="672.0" layoutY="119.0" prefHeight="27.0" prefWidth="191.0" />
+         <TextField fx:id="Quality" alignment="CENTER_RIGHT" layoutX="672.0" layoutY="161.0" prefHeight="27.0" prefWidth="191.0" />
+         <Label layoutY="14.0" prefHeight="27.0" prefWidth="147.0" text="Wideo" textFill="WHITE">
+            <font>
+               <Font size="24.0" />
+            </font>
+         </Label>
+         <Label layoutX="455.0" layoutY="14.0" prefHeight="27.0" prefWidth="147.0" text="Zdjęcia" textFill="WHITE">
+            <font>
+               <Font size="24.0" />
+            </font>
+         </Label>
       </children>
    </Pane>
    <Line fx:id="divisionLine" endX="762.0" layoutX="414.0" layoutY="335.0" startX="-100.0" stroke="WHITE" />
-   <Pane fx:id="browsePane" layoutX="817.0" layoutY="127.0" prefHeight="28.0" prefWidth="297.0">
+   <Pane fx:id="browsePane" layoutX="758.0" layoutY="127.0" prefHeight="28.0" prefWidth="297.0">
       <children>
-         <TextField fx:id="browseTextFile" layoutY="1.0" prefHeight="27.0" prefWidth="191.0" promptText="Wybierz folder" />
-         <Button fx:id="browseButton" layoutX="202.0" layoutY="1.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="28.0" text="..." textFill="WHITE" />
+         <TextField fx:id="browseTextFile" layoutY="1.0" prefHeight="27.0" prefWidth="200.0" promptText="Wybierz folder" />
+         <Button fx:id="browseButton" layoutX="214.0" layoutY="1.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="28.0" text="..." textFill="WHITE" />
       </children>
    </Pane>
    <TextField fx:id="addNewTypeFile" layoutX="815.0" layoutY="190.0" prefHeight="27.0" prefWidth="191.0" promptText="Dodaj kategorie" />
@@ -142,8 +157,12 @@
          </Button>
       </children>
    </Pane>
-   <Button fx:id="addBrowsePane" layoutX="817.0" layoutY="126.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="61.0" text="Dodaj" textFill="WHITE" />
-   <Pane fx:id="savedChanges" layoutX="477.0" layoutY="217.0" prefHeight="320.0" prefWidth="461.0">
+   <Pane fx:id="warningPane" layoutX="291.0" layoutY="611.0" prefHeight="109.0" prefWidth="905.0">
+      <children>
+         <Label fx:id="warningLabel" layoutX="14.0" layoutY="14.0" prefHeight="64.0" prefWidth="863.0" text="Komunikat" textFill="WHITE" wrapText="true" />
+      </children>
+   </Pane>
+   <Pane fx:id="savedChanges" layoutX="459.0" layoutY="176.0" prefHeight="320.0" prefWidth="461.0">
       <children>
          <Label alignment="CENTER" layoutX="58.0" layoutY="69.0" prefHeight="96.0" prefWidth="346.0" text="Zapisano wszytskie zmiany" textAlignment="CENTER" textFill="WHITE" wrapText="true">
             <font>
@@ -153,5 +172,6 @@
          <Button fx:id="buttonOK" layoutX="184.0" layoutY="193.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="94.0" text="OK" textFill="WHITE" />
       </children>
    </Pane>
+  
 
 </AnchorPane>

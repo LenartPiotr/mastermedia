@@ -22,6 +22,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 public class SettingController implements Initializable {
@@ -29,7 +30,7 @@ public class SettingController implements Initializable {
     public ComboBox fileComboBox;
     public Button cancelButton;
     public Button acceptButton;
-    public Button deleteButton;
+
     public TextField maxHeight;
     public TextField maxWidth;
     public TextField extra;
@@ -44,9 +45,7 @@ public class SettingController implements Initializable {
     public TextField addNewExtensions;
     public Button deleteButtonExtensions;
 
-    public Label extraLabel;
-    public Label extraLabel1;
-    public TextField extra1;
+
 
     public Pane compressionPane;
     public Line divisionLine;
@@ -54,12 +53,19 @@ public class SettingController implements Initializable {
     public Button addButtonExtension;
     public Pane extensionPane;
     public Pane browsePane;
-    public Button addBrowsePane;
+
     public Pane savedChanges;
     public Button buttonOK;
     public Button settings;
     public Button folder;
-    public VBox menu;
+    public Label warningLabel;
+    public Pane warningPane;
+    public TextField maxHeight1;
+    public TextField maxWidth1;
+    public TextField Quality;
+    public Pane pane;
+    public TextField bitrate;
+    public TextField fps;
 
 
     @Override
@@ -70,6 +76,7 @@ public class SettingController implements Initializable {
             throw new RuntimeException(e);
         }
         SettingChanger settingChangerStart = BackendService.getInstance().getSettingsChanger();
+        SettingChanger settingChangerCancel = BackendService.getInstance().getSettingsChanger();
 
         settingsMenu();
 
@@ -80,14 +87,18 @@ public class SettingController implements Initializable {
         extensionPane.setVisible(false);
         browsePane.setVisible(false);
         savedChanges.setVisible(false);
+        warningPane.setVisible(false);
 
+
+        browseTextFile.setOnAction(event -> {});
 
         startSetup(settingChangerStart);
 
         cancelButton.setOnAction(event -> {
+
             try {
 
-                new SceneController().switchToScene(event, String.valueOf(XMLFile.SETTINGS_VIEW));
+                new SceneController().switchToScene(event, String.valueOf(XMLFile.BROWSE_FILES_ALBUM_VIEW));
 
             }catch(IOException e) {
 
@@ -104,27 +115,7 @@ public class SettingController implements Initializable {
             }
         });
 
-
-
-
         deleteButtons();
-
-
-        browseButton.setOnAction(event -> {
-            final DirectoryChooser directoryChooser = new DirectoryChooser();
-            Stage stage = (Stage) mainAnchorPane.getScene().getWindow();
-            File file = directoryChooser.showDialog(stage);
-
-            if (file != null) {
-                browseTextFile.setText(file.getAbsolutePath());
-                browseTextFile.clear();
-                albumComboBox.getItems().add(browseTextFile.getText());
-
-
-            }
-
-
-        });
 
         addNewTypeFile.setOnAction(event -> {
             String newFileType = addNewTypeFile.getText();
@@ -143,9 +134,7 @@ public class SettingController implements Initializable {
             settingChangerStart.setFileTypes(fileTypes);
 
             extensionsComboBox.getItems().clear();
-            for (FileType fileType : settingChangerStart.getFileTypes()) {
-                extensionsComboBox.getItems().add(fileType.getName());
-            }
+
             addNewTypeFile.setVisible(false);
             addButtonTypeFile.setVisible(true);
         });
@@ -180,25 +169,22 @@ public class SettingController implements Initializable {
 
         });
 
-        addBrowsePane.setOnAction(event -> {
-            browsePane.setVisible(true);
-            addBrowsePane.setVisible(false);
-        });
+
 
     }
 
     public void startSetup(SettingChanger settingChangerStart){
         String directoriesCopy = settingChangerStart.getDirectoriesCopy();
-        albumComboBox.getItems().add(directoriesCopy);
+        albumComboBox.getItems().add("directoriesCopy");
 
         String directoriesLowResolution = settingChangerStart.getDirectoriesLowResolution();
-        albumComboBox.getItems().add(directoriesLowResolution);
+        albumComboBox.getItems().add("directoriesLowResolution");
 
         String directoriesOriginal = settingChangerStart.getDirectoriesOriginal();
-        albumComboBox.getItems().add(directoriesOriginal);
+        albumComboBox.getItems().add("directoriesOriginal");
 
         String directoriesSorted = settingChangerStart.getDirectoriesSorted();
-        albumComboBox.getItems().add(directoriesSorted);
+        albumComboBox.getItems().add("directoriesSorted");
 
         albumComboBox.setCellFactory(listView -> new ListCell<String>() {
             @Override
@@ -223,6 +209,35 @@ public class SettingController implements Initializable {
 
                 }
             }
+
+        });
+
+        albumComboBox.setOnAction(event -> {
+            browsePane.setVisible(true);
+
+            int selectedIndex = albumComboBox.getSelectionModel().getSelectedIndex();
+
+            switch (selectedIndex) {
+                case 0 -> {
+                    browseTextFile.setPromptText(settingChangerStart.getDirectoriesCopy());
+                }
+                case 1 -> {
+                    browseTextFile.setPromptText(settingChangerStart.getDirectoriesLowResolution());
+                }
+                case 2 -> {
+
+                    browseTextFile.setPromptText(settingChangerStart.getDirectoriesOriginal());
+                }
+                case 3 -> {
+                    browseTextFile.setPromptText(settingChangerStart.getDirectoriesSorted());
+
+                }
+
+                default -> browseTextFile.clear();
+            }
+
+            browseAlbum(selectedIndex,settingChangerStart);
+
         });
 
 
@@ -236,176 +251,155 @@ public class SettingController implements Initializable {
             compressionPane.setVisible(true);
 
             for(int i = 0; i<fileComboBox.getChildrenUnmodifiable().size();i++) {
+                extensionPane.setVisible(true);
+                extensionsComboBox.getItems().clear();
 
                 if (fileComboBox.getSelectionModel().getSelectedIndex() == i) {
-                    extensionPane.setVisible(true);
 
+                    setProperties(
+                            maxWidth,
+                            String.valueOf(settingChangerStart.getVideoMaxWidth()),
+                            settingChangerStart.getVideoMaxWidthDescription()
+                    );
+                    setProperties(
+                            maxHeight,
+                            String.valueOf(settingChangerStart.getVideoMaxHeight()),
+                            settingChangerStart.getVideoMaxHeightDescription()
+                    );
+                    setProperties(
+                            fps,
+                            String.valueOf(settingChangerStart.getVideoFps()),
+                            settingChangerStart.getVideoFpsDescription()
+                    );
 
-                    extensionsComboBox.getItems().clear();
-                    if(i == 0){
-                        extra1.setVisible(true);
-                        extraLabel1.setVisible(true);
-                        extraLabel.setText("FPS");
-                        extraLabel1.setText("Bitrate");
-
-                        setProperties(
-                                maxWidth,
-                                String.valueOf(settingChangerStart.getVideoMaxWidth()),
-                                settingChangerStart.getVideoMaxWidthDescription()
-                        );
-                        setProperties(
-                                maxHeight,
-                                String.valueOf(settingChangerStart.getVideoMaxHeight()),
-                                settingChangerStart.getVideoMaxHeightDescription()
-                        );
-                        setProperties(
-                                extra,
-                                String.valueOf(settingChangerStart.getVideoFps()),
-                                settingChangerStart.getVideoFpsDescription()
-                        );
-
-                        setProperties(
-                                extra1,
-                                String.valueOf(settingChangerStart.getVideoBitrate()),
-                                settingChangerStart.getVideoBitrateDescription()
-                        );
-                        maxWidth.setOnAction(event1 -> {
-                            try {
-                                settingChangerStart.setVideoMaxWidth(Integer.parseInt(maxWidth.getText()));
-                                maxWidth.setPromptText(maxWidth.getText());
-                                maxWidth.clear();
-                                maxWidth.setStyle("-fx-text-fill: white;");
-                            }catch (NumberFormatException e){
-                                maxHeight.setStyle("-fx-text-fill: red;");
-
-                            }
-                        });
-
-                        maxHeight.setOnAction(event1 -> {
-                            try {
-                                settingChangerStart.setVideoMaxHeight(Integer.parseInt(maxHeight.getText()));
-                                maxHeight.setPromptText(maxHeight.getText());
-                                maxHeight.clear();
-                                maxHeight.setStyle("-fx-text-fill: white;");
-                            }catch (NumberFormatException e){
-                                maxHeight.setStyle("-fx-text-fill: red;");
+                    setProperties(
+                            bitrate,
+                            String.valueOf(settingChangerStart.getVideoBitrate()),
+                            settingChangerStart.getVideoBitrateDescription()
+                    );
+                    maxWidth.setOnAction(event1 -> {
+                        try {
+                            settingChangerStart.setVideoMaxWidth(Integer.parseInt(maxWidth.getText()));
+                            maxWidth.setPromptText(maxWidth.getText());
+                            maxWidth.clear();
+                            maxWidth.setStyle("-fx-text-fill: white;");
+                        } catch (NumberFormatException e) {
+                            maxHeight.setStyle("-fx-text-fill: red;");
 
                         }
-                        });
+                    });
 
-                        extra.setOnAction(event1 -> {
-                            try {
-                                settingChangerStart.setVideoBitrate(Integer.parseInt(extra.getText()));
-                                extra.setPromptText(extra.getText());
-                                extra.clear();
-                                extra.setStyle("-fx-text-fill: white;");
-                            }catch (NumberFormatException e){
+                    maxHeight.setOnAction(event1 -> {
+                        try {
+                            settingChangerStart.setVideoMaxHeight(Integer.parseInt(maxHeight.getText()));
+                            maxHeight.setPromptText(maxHeight.getText());
+                            maxHeight.clear();
+                            maxHeight.setStyle("-fx-text-fill: white;");
+                        } catch (NumberFormatException e) {
+                            maxHeight.setStyle("-fx-text-fill: red;");
+
+                        }
+                    });
+
+                    fps.setOnAction(event1 -> {
+                        try {
+                            settingChangerStart.setVideoBitrate(Integer.parseInt(fps.getText()));
+                            fps.setPromptText(fps.getText());
+                            fps.clear();
+                            fps.setStyle("-fx-text-fill: white;");
+                        } catch (NumberFormatException e) {
                             maxHeight.setStyle("-fx-text-fill: red;");
 
                         }
 
-                        });
+                    });
 
-                        extra1.setOnAction(event1 -> {
-                            try {
-                                settingChangerStart.setVideoFps(extra1.getText());
-                                extra1.setPromptText(extra1.getText());
-                                extra1.clear();
-                                extra1.setStyle("-fx-text-fill: white;");
-                            }catch (NumberFormatException e){
-                                maxHeight.setStyle("-fx-text-fill: red;");
+                    bitrate.setOnAction(event1 -> {
+                        try {
+                            settingChangerStart.setVideoFps(bitrate.getText());
+                            bitrate.setPromptText(bitrate.getText());
+                            bitrate.clear();
+                            bitrate.setStyle("-fx-text-fill: white;");
+                        } catch (NumberFormatException e) {
+                            maxHeight.setStyle("-fx-text-fill: red;");
 
                         }
-                        });
+                    });
 
-                    }
 
-                    if(i == 1){
+                    setProperties(
+                            maxWidth1,
+                            String.valueOf(settingChangerStart.getImageMaxWidth()),
+                            settingChangerStart.getImageMaxWidthDescription()
+                    );
+                    setProperties(
+                            maxHeight1,
+                            String.valueOf(settingChangerStart.getImageMaxHeight()),
+                            settingChangerStart.getImageMaxHeightDescription()
+                    );
+                    setProperties(
+                            Quality,
+                            String.valueOf(settingChangerStart.getImageQuality()),
+                            settingChangerStart.getImageQualityDescription()
+                    );
 
-                        extraLabel.setText("Jakość");
-                        extraLabel1.setVisible(false);
-                        extra1.setVisible(false);
-                        setProperties(
-                                maxWidth,
-                                String.valueOf(settingChangerStart.getImageMaxWidth()),
-                                settingChangerStart.getImageMaxWidthDescription()
-                        );
-                        setProperties(
-                                maxHeight,
-                                String.valueOf(settingChangerStart.getImageMaxHeight()),
-                                settingChangerStart.getImageMaxHeightDescription()
-                        );
-                        setProperties(
-                                extra,
-                                String.valueOf(settingChangerStart.getImageQuality()),
-                                settingChangerStart.getImageQualityDescription()
-                        );
-
-                        maxWidth.setOnAction(event1 -> {
-                            try {
+                    maxWidth1.setOnAction(event1 -> {
+                        try {
                             settingChangerStart.setImageMaxWidth(Integer.parseInt(maxWidth.getText()));
                             maxWidth.setPromptText(maxWidth.getText());
                             maxWidth.clear();
                             maxWidth.setStyle("-fx-text-fill: white;");
-                            }catch (NumberFormatException e){
-                                maxHeight.setStyle("-fx-text-fill: red;");
+                        } catch (NumberFormatException e) {
+                            maxHeight.setStyle("-fx-text-fill: red;");
 
                         }
-                        });
+                    });
 
-                        maxHeight.setOnAction(event1 -> {
-                            maxHeight.setStyle("-fx-text-fill: white;");
+                    maxHeight1.setOnAction(event1 -> {
+                        maxHeight.setStyle("-fx-text-fill: white;");
 
-                            try {
-                                int value = Integer.parseInt(maxHeight.getText());
-                                settingChangerStart.setImageMaxHeight(value);
-                                maxHeight.setPromptText(maxHeight.getText());
-                                maxHeight.clear();
-                            }catch (NumberFormatException e){
-                                maxHeight.setStyle("-fx-text-fill: red;");
+                        try {
+                            int value = Integer.parseInt(maxHeight.getText());
+                            settingChangerStart.setImageMaxHeight(value);
+                            maxHeight.setPromptText(maxHeight.getText());
+                            maxHeight.clear();
+                        } catch (NumberFormatException e) {
+                            maxHeight.setStyle("-fx-text-fill: red;");
+
+                        }
+                    });
+
+                    Quality.setOnAction(event1 -> {
+
+                        try {
+                            int quality = Integer.parseInt(extra.getText());
+                            if (quality >= 0 && quality <= 10) {
+                                extra.setStyle("-fx-text-fill: white;");
+                                settingChangerStart.setImageQuality(quality);
+                                extra.setPromptText(extra.getText());
+                                extra.clear();
+                            } else {
+                                extra.setStyle("-fx-text-fill: red;");
 
                             }
-                        });
-
-                        extra.setOnAction(event1 -> {
-
-                            try {
-                                int quality = Integer.parseInt(extra.getText());
-                                if(quality>=0&&quality<=10) {
-                                    extra.setStyle("-fx-text-fill: white;");
-                                    settingChangerStart.setImageQuality(quality);
-                                    extra.setPromptText(extra.getText());
-                                    extra.clear();
-                                }
-                                else {
-                                    extra.setStyle("-fx-text-fill: red;");
-
-                                }
-                            }catch (NumberFormatException e){
-                                maxHeight.setStyle("-fx-text-fill: red;");
+                        } catch (NumberFormatException e) {
+                            maxHeight.setStyle("-fx-text-fill: red;");
 
                         }
-                        });
-
-                    }
+                    });
 
 
                     for (String e : settingChangerStart.getFileTypes().get(i).getExtensions()) {
                         extensionsComboBox.getItems().add(e);
 
-
                     }
                 }
             }
+
         });
-
-
     }
 
     public void deleteButtons(){
-        deleteButton.setOnAction(event -> {
-            deleteItemsInCombobox(albumComboBox);
-        });
 
         deleteButtonTypeFile.setOnAction(event -> {
             deleteItemsInCombobox(fileComboBox);
@@ -414,7 +408,6 @@ public class SettingController implements Initializable {
         deleteButtonExtensions.setOnAction(event -> {
             deleteItemsInCombobox(extensionsComboBox);
         });
-
 
     }
 
@@ -465,6 +458,39 @@ public class SettingController implements Initializable {
 
             }
 
+        });
+    }
+
+
+    public void browseAlbum(int i,SettingChanger settingChangerStart) {
+        browseButton.setOnAction(event -> {
+            final DirectoryChooser directoryChooser = new DirectoryChooser();
+            Stage stage = (Stage) mainAnchorPane.getScene().getWindow();
+            File file = directoryChooser.showDialog(stage);
+
+            if (file != null) {
+                browseTextFile.setText(file.getAbsolutePath());
+                browseTextFile.setPromptText(file.getAbsolutePath());
+            }
+
+            switch (i) {
+                case 0 -> {
+                    settingChangerStart.setDirectoriesCopy(browseTextFile.getText());
+                }
+                case 1 -> {
+                    settingChangerStart.setDirectoriesLowResolution(browseTextFile.getText());
+                }
+                case 2 -> {
+
+                    settingChangerStart.setDirectoriesOriginal(browseTextFile.getText());
+                }
+                case 3 -> {
+                    browseTextFile.setPromptText(settingChangerStart.getDirectoriesSorted());
+                    settingChangerStart.setDirectoriesSorted(browseTextFile.getText());
+                }
+
+                default -> browseTextFile.clear();
+            }
         });
     }
 
