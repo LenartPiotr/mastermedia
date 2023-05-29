@@ -491,6 +491,7 @@ public class SettingController implements Initializable {
 
                 default -> browseTextFile.clear();
             }
+            browseTextFile.clear();
         });
     }
 
