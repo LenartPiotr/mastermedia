@@ -33,6 +33,6 @@
     -fx-background-radius: 15px;
 }
 
-#menuView{
+#menuView,#warningPane{
     -fx-background-color: #29292A;
 }

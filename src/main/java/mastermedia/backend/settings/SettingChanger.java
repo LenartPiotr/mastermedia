@@ -21,7 +21,7 @@ public class SettingChanger {
     public SettingChanger(Settings settings, File pathToSettings){
         this.settings = new Settings(settings);
         this.pathToSettings = pathToSettings;
-        message = "";
+        message = " ";
     }
 
     // Directories

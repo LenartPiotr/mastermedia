@@ -22,7 +22,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicReference;
 
 
 public class SettingController implements Initializable {
@@ -66,6 +65,7 @@ public class SettingController implements Initializable {
     public Pane pane;
     public TextField bitrate;
     public TextField fps;
+    public Label savedPanelLabel;
 
 
     @Override
@@ -76,7 +76,6 @@ public class SettingController implements Initializable {
             throw new RuntimeException(e);
         }
         SettingChanger settingChangerStart = BackendService.getInstance().getSettingsChanger();
-        SettingChanger settingChangerCancel = BackendService.getInstance().getSettingsChanger();
 
         settingsMenu();
 
@@ -98,7 +97,7 @@ public class SettingController implements Initializable {
 
             try {
 
-                new SceneController().switchToScene(event, String.valueOf(XMLFile.BROWSE_FILES_ALBUM_VIEW));
+                new SceneController().switchToScene(event, String.valueOf(XMLFile.AlBUM_CONTROLLER));
 
             }catch(IOException e) {
 
@@ -109,10 +108,16 @@ public class SettingController implements Initializable {
         });
 
         acceptButton.setOnAction(event -> {
-            if(settingChangerStart.save()) {
+            if(settingChangerStart.save() && !warningPane.isVisible()) {
                 savedChanges.setVisible(true);
                 buttonOK.setOnAction(event1 -> savedChanges.setVisible(false));
             }
+            else {
+                savedChanges.setVisible(true);
+                savedPanelLabel.setText("Zmian nie udało się zapisać, ze względu na nieprawidłowe dane");
+                buttonOK.setOnAction(event1 -> savedChanges.setVisible(false));
+            }
+
         });
 
         deleteButtons();
@@ -148,9 +153,7 @@ public class SettingController implements Initializable {
             String newExtension = addNewExtensions.getText();
             addNewExtensions.clear();
 
-
             extensionsComboBox.getItems().add(newExtension);
-
 
             int selectedIndex = fileComboBox.getSelectionModel().getSelectedIndex();
 
@@ -168,8 +171,6 @@ public class SettingController implements Initializable {
             addButtonExtension.setVisible(false);
 
         });
-
-
 
     }
 
@@ -280,11 +281,9 @@ public class SettingController implements Initializable {
                     maxWidth.setOnAction(event1 -> {
                         try {
                             settingChangerStart.setVideoMaxWidth(Integer.parseInt(maxWidth.getText()));
-                            maxWidth.setPromptText(maxWidth.getText());
-                            maxWidth.clear();
-                            maxWidth.setStyle("-fx-text-fill: white;");
+                            correctValue(maxWidth);
                         } catch (NumberFormatException e) {
-                            maxHeight.setStyle("-fx-text-fill: red;");
+                            warning(maxWidth,settingChangerStart);
 
                         }
                     });
@@ -292,23 +291,19 @@ public class SettingController implements Initializable {
                     maxHeight.setOnAction(event1 -> {
                         try {
                             settingChangerStart.setVideoMaxHeight(Integer.parseInt(maxHeight.getText()));
-                            maxHeight.setPromptText(maxHeight.getText());
-                            maxHeight.clear();
-                            maxHeight.setStyle("-fx-text-fill: white;");
+                            correctValue(maxHeight);
                         } catch (NumberFormatException e) {
-                            maxHeight.setStyle("-fx-text-fill: red;");
+                           warning(maxHeight,settingChangerStart);
 
                         }
                     });
 
                     fps.setOnAction(event1 -> {
                         try {
-                            settingChangerStart.setVideoBitrate(Integer.parseInt(fps.getText()));
-                            fps.setPromptText(fps.getText());
-                            fps.clear();
-                            fps.setStyle("-fx-text-fill: white;");
+                            settingChangerStart.setVideoFps(fps.getText());
+                            correctValue(fps);
                         } catch (NumberFormatException e) {
-                            maxHeight.setStyle("-fx-text-fill: red;");
+                            warning(fps,settingChangerStart);
 
                         }
 
@@ -316,13 +311,10 @@ public class SettingController implements Initializable {
 
                     bitrate.setOnAction(event1 -> {
                         try {
-                            settingChangerStart.setVideoFps(bitrate.getText());
-                            bitrate.setPromptText(bitrate.getText());
-                            bitrate.clear();
-                            bitrate.setStyle("-fx-text-fill: white;");
+                            settingChangerStart.setVideoBitrate(Integer.parseInt(bitrate.getText()));
+                            correctValue(bitrate);
                         } catch (NumberFormatException e) {
-                            maxHeight.setStyle("-fx-text-fill: red;");
-
+                            warning(bitrate,settingChangerStart);
                         }
                     });
 
@@ -345,26 +337,22 @@ public class SettingController implements Initializable {
 
                     maxWidth1.setOnAction(event1 -> {
                         try {
-                            settingChangerStart.setImageMaxWidth(Integer.parseInt(maxWidth.getText()));
-                            maxWidth.setPromptText(maxWidth.getText());
-                            maxWidth.clear();
-                            maxWidth.setStyle("-fx-text-fill: white;");
+                            settingChangerStart.setImageMaxWidth(Integer.parseInt(maxWidth1.getText()));
+                            correctValue(maxWidth1);
                         } catch (NumberFormatException e) {
-                            maxHeight.setStyle("-fx-text-fill: red;");
+                            warning(maxWidth1,settingChangerStart);
 
                         }
                     });
 
                     maxHeight1.setOnAction(event1 -> {
-                        maxHeight.setStyle("-fx-text-fill: white;");
+                        maxHeight1.setStyle("-fx-text-fill: white;");
 
                         try {
-                            int value = Integer.parseInt(maxHeight.getText());
-                            settingChangerStart.setImageMaxHeight(value);
-                            maxHeight.setPromptText(maxHeight.getText());
-                            maxHeight.clear();
+                            settingChangerStart.setImageMaxHeight(Integer.parseInt(maxHeight1.getText()));
+                            correctValue(maxHeight1);
                         } catch (NumberFormatException e) {
-                            maxHeight.setStyle("-fx-text-fill: red;");
+                            warning(maxHeight1,settingChangerStart);
 
                         }
                     });
@@ -372,22 +360,18 @@ public class SettingController implements Initializable {
                     Quality.setOnAction(event1 -> {
 
                         try {
-                            int quality = Integer.parseInt(extra.getText());
+                            int quality = Integer.parseInt(Quality.getText());
                             if (quality >= 0 && quality <= 10) {
-                                extra.setStyle("-fx-text-fill: white;");
-                                settingChangerStart.setImageQuality(quality);
-                                extra.setPromptText(extra.getText());
-                                extra.clear();
+                                correctValue(Quality);
                             } else {
-                                extra.setStyle("-fx-text-fill: red;");
+                                warning(Quality,settingChangerStart);
 
                             }
                         } catch (NumberFormatException e) {
-                            maxHeight.setStyle("-fx-text-fill: red;");
+                            warning(Quality,settingChangerStart);
 
                         }
                     });
-
 
                     for (String e : settingChangerStart.getFileTypes().get(i).getExtensions()) {
                         extensionsComboBox.getItems().add(e);
@@ -493,6 +477,22 @@ public class SettingController implements Initializable {
             }
             browseTextFile.clear();
         });
+    }
+
+
+    public void warning(TextField textField, SettingChanger settingChanger ){
+        textField.setStyle("-fx-text-fill: red;");
+        warningPane.setVisible(true);
+        warningLabel.setText("Uwaga wprowadzono błędną wartość"
+                +settingChanger.getMessage());
+
+    }
+
+    public void correctValue(TextField textField){
+        textField.setPromptText(textField.getText());
+        textField.clear();
+        textField.setStyle("-fx-text-fill: white;");
+        warningPane.setVisible(false);
     }
 
 }

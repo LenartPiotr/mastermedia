@@ -159,12 +159,15 @@
    </Pane>
    <Pane fx:id="warningPane" layoutX="291.0" layoutY="611.0" prefHeight="109.0" prefWidth="905.0">
       <children>
-         <Label fx:id="warningLabel" layoutX="14.0" layoutY="14.0" prefHeight="64.0" prefWidth="863.0" text="Komunikat" textFill="WHITE" wrapText="true" />
+         <Label fx:id="warningLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="64.0" prefWidth="863.0" text="Komunikat" textFill="WHITE" wrapText="true">
+            <font>
+               <Font name="System Bold" size="18.0" />
+            </font></Label>
       </children>
    </Pane>
    <Pane fx:id="savedChanges" layoutX="459.0" layoutY="176.0" prefHeight="320.0" prefWidth="461.0">
       <children>
-         <Label alignment="CENTER" layoutX="58.0" layoutY="69.0" prefHeight="96.0" prefWidth="346.0" text="Zapisano wszytskie zmiany" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <Label fx:id="savedPanelLabel" alignment="CENTER" layoutX="58.0" layoutY="69.0" prefHeight="96.0" prefWidth="346.0" text="Zapisano wszytskie zmiany" textAlignment="CENTER" textFill="WHITE" wrapText="true">
             <font>
                <Font size="16.0" />
             </font>
