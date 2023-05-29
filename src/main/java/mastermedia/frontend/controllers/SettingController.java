@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 public class SettingController implements Initializable {
@@ -465,30 +466,60 @@ public class SettingController implements Initializable {
 
 
     public void browseAlbum(int i,SettingChanger settingChangerStart) {
+
+        AtomicReference<String> path = new AtomicReference<>(" ");
+        browseTextFile.setOnAction(event -> {
+            path.set(browseTextFile.getText());
+            browseTextFile.setText(path.get());
+            browseTextFile.setPromptText(path.get());
+            switch (i) {
+                case 0 -> {
+                    settingChangerStart.setDirectoriesCopy(path.get());
+                }
+                case 1 -> {
+                    settingChangerStart.setDirectoriesLowResolution(path.get());
+                }
+                case 2 -> {
+
+                    settingChangerStart.setDirectoriesOriginal(path.get());
+                }
+                case 3 -> {
+                    browseTextFile.setPromptText(settingChangerStart.getDirectoriesSorted());
+                    settingChangerStart.setDirectoriesSorted(path.get());
+                }
+
+                default -> browseTextFile.clear();
+            }
+            browseTextFile.clear();
+        });
+
+
         browseButton.setOnAction(event -> {
             final DirectoryChooser directoryChooser = new DirectoryChooser();
             Stage stage = (Stage) mainAnchorPane.getScene().getWindow();
             File file = directoryChooser.showDialog(stage);
 
             if (file != null) {
-                browseTextFile.setText(file.getAbsolutePath());
-                browseTextFile.setPromptText(file.getAbsolutePath());
+                path.set(file.getAbsolutePath());
+                browseTextFile.setText(path.get());
+                browseTextFile.setPromptText(path.get());
+
             }
 
             switch (i) {
                 case 0 -> {
-                    settingChangerStart.setDirectoriesCopy(browseTextFile.getText());
+                    settingChangerStart.setDirectoriesCopy(path.get());
                 }
                 case 1 -> {
-                    settingChangerStart.setDirectoriesLowResolution(browseTextFile.getText());
+                    settingChangerStart.setDirectoriesLowResolution(path.get());
                 }
                 case 2 -> {
 
-                    settingChangerStart.setDirectoriesOriginal(browseTextFile.getText());
+                    settingChangerStart.setDirectoriesOriginal(path.get());
                 }
                 case 3 -> {
                     browseTextFile.setPromptText(settingChangerStart.getDirectoriesSorted());
-                    settingChangerStart.setDirectoriesSorted(browseTextFile.getText());
+                    settingChangerStart.setDirectoriesSorted(path.get());
                 }
 
                 default -> browseTextFile.clear();
