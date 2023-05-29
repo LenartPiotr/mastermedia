@@ -21,6 +21,7 @@ import java.net.URL;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 
@@ -120,7 +121,25 @@ public class SettingController implements Initializable {
 
         });
 
-        deleteButtons();
+
+
+        deleteButtonTypeFile.setOnAction(event -> {
+            deleteItemsInCombobox(fileComboBox,"filetypes",settingChangerStart);
+
+
+        });
+
+        deleteButtonExtensions.setOnAction(event -> {
+
+            int selectedIndex = fileComboBox.getSelectionModel().getSelectedIndex();
+            int selectedIndexExtension  = extensionsComboBox.getSelectionModel().getSelectedIndex();
+            extensionsComboBox.getItems().remove(selectedIndexExtension);
+            settingChangerStart.getFileTypes().get(selectedIndex).getExtensions().remove(selectedIndexExtension);
+            extensionsComboBox.getSelectionModel().clearSelection();
+            settingChangerStart.setFileTypes(settingChangerStart.getFileTypes());
+
+        });
+
 
         addNewTypeFile.setOnAction(event -> {
             String newFileType = addNewTypeFile.getText();
@@ -251,11 +270,11 @@ public class SettingController implements Initializable {
             divisionLine.setVisible(true);
             compressionPane.setVisible(true);
 
-            for(int i = 0; i<fileComboBox.getChildrenUnmodifiable().size();i++) {
+            for (int i = 0; i < fileComboBox.getItems().size(); i++) {
                 extensionPane.setVisible(true);
-                extensionsComboBox.getItems().clear();
 
                 if (fileComboBox.getSelectionModel().getSelectedIndex() == i) {
+                    extensionsComboBox.getItems().clear();
 
                     setProperties(
                             maxWidth,
@@ -373,34 +392,33 @@ public class SettingController implements Initializable {
                         }
                     });
 
-                    for (String e : settingChangerStart.getFileTypes().get(i).getExtensions()) {
-                        extensionsComboBox.getItems().add(e);
-
+                    if (settingChangerStart.getFileTypes().get(i).getExtensions().isEmpty()) {
+                        extensionsComboBox.getItems().add("Brak rozszerzeń");
+                    } else {
+                        for (String e : settingChangerStart.getFileTypes().get(i).getExtensions()) {
+                            extensionsComboBox.getItems().add(e);
+                        }
                     }
                 }
+
             }
 
         });
     }
 
-    public void deleteButtons(){
 
-        deleteButtonTypeFile.setOnAction(event -> {
-            deleteItemsInCombobox(fileComboBox);
-        });
+    public void deleteItemsInCombobox(ComboBox comboBox,String name,SettingChanger settingChanger){
 
-        deleteButtonExtensions.setOnAction(event -> {
-            deleteItemsInCombobox(extensionsComboBox);
-        });
 
-    }
 
-    public void deleteItemsInCombobox(ComboBox comboBox){
-
-        int selectedIndex = comboBox.getSelectionModel().getSelectedIndex();
-        if (selectedIndex != -1) {
-            comboBox.getItems().remove(selectedIndex);
-            comboBox.getSelectionModel().clearSelection();
+        if(Objects.equals(name, "filetypes")){
+            int selectedIndex = comboBox.getSelectionModel().getSelectedIndex();
+            if (selectedIndex != -1) {
+                comboBox.getItems().remove(selectedIndex);
+                settingChanger.getFileTypes().remove(selectedIndex);
+                comboBox.getSelectionModel().clearSelection();
+            }
+            settingChanger.setFileTypes(settingChanger.getFileTypes());
         }
 
     }
